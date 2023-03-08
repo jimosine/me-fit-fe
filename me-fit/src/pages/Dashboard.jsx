@@ -1,10 +1,18 @@
+import AddGoal from "../components/Dashboard/AddGoal"
+//import GoalsList from "../components/Dashboard/GoalsList"
+
 const Dashboard = () => {
 
     return (
 
         <div className="App">
-            <h1> Hello world!</h1>
+            <h1> Dashboard</h1>
+            <p>Nothing to see here... Start adding a goal!</p>
+            {/* <GoalsList /> */}
+            <AddGoal />
+
         </div>
+
 
     )
 
