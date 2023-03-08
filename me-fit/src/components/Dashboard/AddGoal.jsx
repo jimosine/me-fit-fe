@@ -1,9 +1,6 @@
 import { useState } from "react";
 import GoalForm from "./GoalForm";
 
-// const goal_data = {}
-
-
 
 const AddGoal = () => {
     const [showForm, setShowForm] = useState(false);
@@ -11,7 +8,17 @@ const AddGoal = () => {
     const [formData, setFormData] = useState(null);
 
     const handleFormSubmit = (data) => {
-        console.log(data);
+
+        //Zodat ze niet beide kunnen zetten
+        if (data.Type === "Workout") {
+            data.ProgramID = []
+        } else if (data.Type === "Program") {
+            data.WorkoutID = []
+        }
+
+        //Temp voor user ID
+        data.UserID = 1
+
         setFormData(data);
         setFormSubmitted(true);
         setShowForm(false);
@@ -40,4 +47,4 @@ const AddGoal = () => {
     );
 };
 
-export default AddGoal
+export default AddGoal;
