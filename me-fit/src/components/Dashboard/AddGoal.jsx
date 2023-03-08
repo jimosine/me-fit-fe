@@ -16,8 +16,9 @@ const AddGoal = () => {
             data.WorkoutID = []
         }
 
-        // Add UserID to the form data
+        // Add UserID & isCompleted to the form data
         data.UserID = 1
+        data.completed = false
 
         // Save the form data and update the form submission status
         setFormData(data);

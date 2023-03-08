@@ -7,6 +7,7 @@ const Dashboard = () => {
 
         <div className="App">
             <h1> Dashboard</h1>
+            <p>Nothing to see here... Start adding a goal!</p>
             {/* <GoalsList /> */}
             <AddGoal />
 
