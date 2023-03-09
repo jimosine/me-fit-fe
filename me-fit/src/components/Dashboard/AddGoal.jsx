@@ -1,7 +1,7 @@
 import { useState } from "react";
 import GoalForm from "./GoalForm";
 
-const AddGoal = () => {
+const AddGoal = ({ goals, updateGoals }) => {
     // Define state variables using the useState hook
     const [showForm, setShowForm] = useState(false); // Controls whether to show the form or not
     const [formSubmitted, setFormSubmitted] = useState(false); // Tracks whether the form has been submitted
@@ -21,7 +21,9 @@ const AddGoal = () => {
         data.completed = false
 
         // Save the form data and update the form submission status
+        // Update the goals list state
         setFormData(data);
+        updateGoals([data])
         setFormSubmitted(true);
         setShowForm(false);
     };
@@ -38,6 +40,7 @@ const AddGoal = () => {
         setShowForm(true);
     };
 
+
     // Return the JSX to render the component
     return (
         <div>
@@ -48,13 +51,15 @@ const AddGoal = () => {
             {/* If the form has been submitted, render a button to add another goal */}
             {formSubmitted && <button onClick={() => { setShowForm(true); setFormSubmitted(false); }}>Add a new goal</button>}
             {/* If the form has been submitted, display the data that the user entered on screen*/}
-            {formSubmitted && (
-                <div>
-                    <p>Form submitted with the following data:</p>
-                    <pre>{JSON.stringify(formData, null, 2)}</pre>
-                </div>
-            )}
-        </div>
+            {
+                formSubmitted && (
+                    <div>
+                        <p>Form submitted with the following data:</p>
+                        <pre>{JSON.stringify(formData, null, 2)}</pre>
+                    </div>
+                )
+            }
+        </div >
     );
 };
 

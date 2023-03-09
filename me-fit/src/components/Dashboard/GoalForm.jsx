@@ -5,7 +5,7 @@ const GoalForm = ({ onSubmit, onCancel }) => {
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
 
     // Log form errors to console
-    console.log(errors);
+    //console.log(errors);
 
     // Get the value of the 'Type' input
     const type = watch('Type');
