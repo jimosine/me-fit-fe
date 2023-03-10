@@ -6,14 +6,18 @@ const LibraryList = ({ selectedButton }) => {
             {selectedButton === "Programs" &&
                 <>
                     <p>Program List</p>
-                    <LibraryItem selectedButton={selectedButton} />
+                    <div className="list-items">
+                        <div className="list-item">
+                            <LibraryItem selectedButton={selectedButton} /></div>
+                        <LibraryItem selectedButton={selectedButton} />
+                    </div>
                 </>
             }
 
             {selectedButton === "Workouts" &&
                 <>
                     <p>Workout List</p>
-                    <LibraryItem selectedButton={selectedButton} />
+
                 </>
 
             }
