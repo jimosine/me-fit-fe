@@ -3,7 +3,9 @@ import './App.css';
 import NavBar from './components/Navbar/Navbar';
 import Dashboard from "./pages/Dashboard"
 import Profile from "./pages/Profile"
+import Library from "./pages/Library"
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Dashboard />} />
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/library' element={<Library />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='*' element={
             <>
