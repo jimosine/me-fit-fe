@@ -9,7 +9,9 @@ const LibraryList = ({ selectedButton }) => {
                     <div className="list-items">
                         <div className="list-item">
                             <LibraryItem selectedButton={selectedButton} /></div>
-                        <LibraryItem selectedButton={selectedButton} />
+                        <div className="list-item">
+                            <LibraryItem selectedButton={selectedButton} /></div>
+
                     </div>
                 </>
             }
@@ -17,7 +19,10 @@ const LibraryList = ({ selectedButton }) => {
             {selectedButton === "Workouts" &&
                 <>
                     <p>Workout List</p>
-
+                    <div className="list-items">
+                        <div className="list-item"> <LibraryItem className="list-items" selectedButton={selectedButton} /> </div>
+                        <div className="list-item"> <LibraryItem className="list-items" selectedButton={selectedButton} /> </div>
+                    </div>
                 </>
 
             }
