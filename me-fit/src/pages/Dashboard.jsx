@@ -1,18 +1,16 @@
 import { useState } from "react";
-import AddGoal from "../components/Dashboard/AddGoal"
-import GoalsList from "../components/Dashboard/GoalsList"
-import DashboardHeader from "../components/Dashboard/DashboardHeader";
-import AddGoalButton from "../components/Dashboard/AddGoalButton";
-import AddGoalModal from '../components/Dashboard/AddGoalModal';
+import { Modal } from 'react-bootstrap';
 
+import DashboardHeader from "../components/Dashboard/DashboardHeader";
+import GoalsList from "../components/Dashboard/GoalsList"
+import AddGoalButton from "../components/Dashboard/AddGoalButton";
 import GoalForm from "../components/Dashboard/GoalForm";
 
-import { Modal } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 
-const Dashboard = () => {
 
-    const [goals, setGoals] = useState([]);
+const Dashboard = ({ goals, addGoals, setGoals }) => {
+
+    // const [goals, setGoals] = useState([]);
     const handleShow = () => setShow(true);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -39,10 +37,10 @@ const Dashboard = () => {
     };
 
     //Function passed down to add a new goal by setting the state
-    function addGoals(goal) {
-        setGoals(goals.concat(goal));
-        //setGoals(...goals, goal);
-    }
+    // function addGoals(goal) {
+    //     setGoals(goals.concat(goal));
+    //     //setGoals(...goals, goal);
+    // }
 
     //Function passed down to remove a goal by setting the state
     function removeGoals(goal) {
@@ -57,9 +55,7 @@ const Dashboard = () => {
         <div className="App">
             <DashboardHeader />
             <GoalsList goals={goals} removeGoals={removeGoals} />
-
             <AddGoalButton goal={goals} handleShow={handleShow} updateGoals={addGoals} />
-
 
             {/* <AddGoalModal show={show} onHide={handleClose} /> */}
             <Modal show={show} onHide={handleClose} centered>
@@ -68,12 +64,9 @@ const Dashboard = () => {
                 </Modal.Header>
                 <Modal.Body>
                     <GoalForm onSubmit={handleFormSubmit} updateGoals={addGoals} />
-                    <p>hoi</p>
                 </Modal.Body>
             </Modal>
 
-
-            {/* <AddGoal goal={goals} updateGoals={addGoals} /> */}
 
 
         </div>

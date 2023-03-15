@@ -13,6 +13,13 @@ function App() {
 
   const [contributions, setContributions] = useState([]);
 
+  const [goals, setGoals] = useState([]);
+
+  function addGoals(goal) {
+    setGoals(goals.concat(goal));
+    //setGoals(...goals, goal);
+  }
+
   function addContributions(contribution) {
     setContributions(contributions.concat(contribution));
   }
@@ -24,7 +31,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path='/' element={<Dashboard />} />
-          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/dashboard' element={<Dashboard goals={goals} setGoals={setGoals} addGoals={addGoals} />} />
           <Route path='/library' element={<Library updateContributions={addContributions} />} />
           <Route path='/profile' element={<Profile contributions={contributions} />} />
           <Route path='*' element={

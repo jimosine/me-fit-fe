@@ -17,7 +17,7 @@ const GoalsList = ({ goals, removeGoals }) => {
             {goals.length !== 0 && <ul>{goalsItems}</ul>} */}
             {goals.length !== 0 &&
 
-                <Accordion defaultActiveKey="0">
+                <Accordion >
                     {goalsItems}
 
                 </Accordion>

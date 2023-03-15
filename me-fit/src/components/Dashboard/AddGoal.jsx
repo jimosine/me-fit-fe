@@ -1,3 +1,5 @@
+//KAN WEG
+
 import { useState } from "react";
 import GoalForm from "./GoalForm";
 import { FaPlusCircle } from 'react-icons/fa';
