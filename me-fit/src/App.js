@@ -7,7 +7,17 @@ import Library from "./pages/Library"
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { useState } from "react";
+
 function App() {
+
+  const [contributions, setContributions] = useState([]);
+
+  function addContributions(contribution) {
+    setContributions(contributions.concat(contribution));
+  }
+
+
   return (
     <div className='App'>
       <BrowserRouter>
@@ -15,8 +25,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Dashboard />} />
           <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/library' element={<Library />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path='/library' element={<Library updateContributions={addContributions} />} />
+          <Route path='/profile' element={<Profile contributions={contributions} />} />
           <Route path='*' element={
             <>
               <h1>There's nothing here 👻</h1>
