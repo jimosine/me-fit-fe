@@ -1,5 +1,9 @@
+//KAN WEG
+
 import { useState } from "react";
 import GoalForm from "./GoalForm";
+import { FaPlusCircle } from 'react-icons/fa';
+
 
 const AddGoal = ({ goals, updateGoals }) => {
     // Define state variables using the useState hook
@@ -43,17 +47,17 @@ const AddGoal = ({ goals, updateGoals }) => {
 
     // Return the JSX to render the component
     return (
-        <div>
+        <div className="add-goal">
             {/* If the form and form submission status are not shown, render a button to add a new goal */}
-            {!showForm && !formSubmitted && <button onClick={handleButtonClick}>Add a new goal</button>}
+            {!showForm && !formSubmitted && <button className="add-goal-button" onClick={handleButtonClick}><FaPlusCircle size={60} /></button>}
             {/* If the form is shown, render the GoalForm component */}
             {showForm && <GoalForm onSubmit={handleFormSubmit} onCancel={handleFormCancel} />}
             {/* If the form has been submitted, render a button to add another goal */}
-            {formSubmitted && <button onClick={() => { setShowForm(true); setFormSubmitted(false); }}>Add a new goal</button>}
+            {formSubmitted && <button className="add-goal-button" onClick={() => { setShowForm(true); setFormSubmitted(false); }}><FaPlusCircle size={60} /></button>}
             {/* If the form has been submitted, display the data that the user entered on screen*/}
             {
                 formSubmitted && (
-                    <div>
+                    <div style={{ color: "red", padding: "30px" }}>
                         <p>Form submitted with the following data:</p>
                         <pre>{JSON.stringify(formData, null, 2)}</pre>
                     </div>
