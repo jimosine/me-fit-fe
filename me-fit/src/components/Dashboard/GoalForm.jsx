@@ -10,6 +10,8 @@ const GoalForm = ({ onSubmit, onCancel }) => {
     // Get the value of the 'Type' input
     const type = watch('Type');
 
+
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             {/* Input field for goal name */}
