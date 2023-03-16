@@ -1,20 +1,35 @@
 import React from 'react'
 import { Link } from "react-router-dom"
-import { Navbar, Container, Nav } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { FaDumbbell, FaUserCircle } from 'react-icons/fa'
 
 function NavBar() {
+
+    const navDropdownTitle = <FaUserCircle size={40} />
+
     return (
         <Navbar className="navbar">
-            <Container>
-                <Navbar.Brand >MeFit</Navbar.Brand>
+            <Navbar.Brand className="navbar-brand">
 
-                <Nav className="me-auto">
-                    <Nav.Link > <Link className="text-decoration-none text-white" to="/dashboard"> Dashboard </Link></Nav.Link>
-                    <Nav.Link > <Link className="text-decoration-none text-white" to="/library"> Library </Link></Nav.Link>
-                    <Nav.Link > <Link className="text-decoration-none text-white" to="/profile"> Profile </Link></Nav.Link>
-                </Nav>
+                <FaDumbbell size={40}
+                />{' '}
+                MeFit
+            </Navbar.Brand>
 
-            </Container>
+            <Nav className="me-auto">
+                <Nav.Link > <Link className="nav-links" to="/dashboard"> Dashboard </Link></Nav.Link>
+                <Nav.Link > <Link className="nav-links" to="/library"> Library </Link></Nav.Link>
+                {/* <Nav.Link > <Link className="text-decoration-none text-white" to="/profile"> Profile </Link></Nav.Link> */}
+            </Nav>
+
+            <Nav className="ml-auto">
+                <NavDropdown title={navDropdownTitle} id="collasible-nav-dropdown" drop="start">
+                    <NavDropdown.Item as="button" className="navbar-dropdown-item"><Nav.Link > <Link className="text-decoration-none text-black" to="/profile"> Profile </Link></Nav.Link></NavDropdown.Item>
+                    <NavDropdown.Item as="button" className="navbar-dropdown-item"><Nav.Link > <Link className="text-decoration-none text-black" to="/profile"> Settings </Link></Nav.Link></NavDropdown.Item>
+                    <NavDropdown.Item as="button" className="navbar-dropdown-item"><Nav.Link > <Link className="text-decoration-none text-black" to="/profile"> Logout </Link></Nav.Link></NavDropdown.Item>
+                </NavDropdown>
+            </Nav>
+
         </Navbar>
     )
 }
