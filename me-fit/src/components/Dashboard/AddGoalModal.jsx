@@ -1,6 +1,7 @@
+//KAN WEG
+
 import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
-import { useState } from 'react';
 
 
 const AddGoalModal = ({ show, handleClose }) => {

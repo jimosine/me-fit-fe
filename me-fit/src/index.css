@@ -12,6 +12,38 @@
   text-align: center;
 }
 
+.accordion-button {
+  background: linear-gradient(to right, #718DB8, #92A8C8);
+  color: #fff important;
+}
+
+.navbar-brand {
+  padding: 10px;
+}
+
+.nav-links {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-links:hover {
+  color: black;
+}
+
+.navbar-dropdown-item a {
+  background-color: #718DB8;
+  text-align: center;
+  color: white !important;
+  border-radius: 8px;
+}
+
+.navbar-dropdown-item {
+  background-color: #718DB8;
+  text-align: center;
+  color: white !important;
+  border-radius: 8px;
+}
+
 .goal-item {
   padding: 10px
 }
