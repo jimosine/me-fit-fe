@@ -34,9 +34,9 @@ const Library = ({ updateContributions }) => {
     return (
         <div>
             <Row >
-                <Col>Search stuff</Col>
-                <Col xs={7}><LibraryHeader selectedButton={selectedButton} handleButtonClick={handleButtonClick} /></Col>
-                <Col></Col>
+                {/* <Col>Search stuff</Col> */}
+                <Col ><LibraryHeader selectedButton={selectedButton} handleButtonClick={handleButtonClick} /></Col>
+                {/* <Col></Col> */}
             </Row>
             <Row>
                 <Col>Filter stuff</Col>

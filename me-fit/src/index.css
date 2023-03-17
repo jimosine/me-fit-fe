@@ -82,7 +82,8 @@
 }
 
 .list-items {
-  display: flex
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .list-item {

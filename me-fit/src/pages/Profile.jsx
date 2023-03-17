@@ -6,6 +6,7 @@ import ProfileInfo from "../components/Profile/ProfileInfo";
 import AddGoalButton from "../components/Dashboard/AddGoalButton";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
+import ProfileAchievements from "../components/Profile/ProfileAchievments";
 
 const Profile = ({ contributions, profile, setProfile }) => {
     const handleShow = () => setShow(true);
@@ -78,7 +79,7 @@ const Profile = ({ contributions, profile, setProfile }) => {
 
 
                     <Tab eventKey="achievements" title="Achievements">
-                        <p>yo</p>
+                        <ProfileAchievements />
                     </Tab>
 
                 </Tabs>
