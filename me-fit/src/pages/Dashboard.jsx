@@ -8,12 +8,16 @@ import GoalForm from "../components/Dashboard/GoalForm";
 
 
 
+
+
 const Dashboard = ({ goals, addGoals, setGoals }) => {
 
     // const [goals, setGoals] = useState([]);
     const handleShow = () => setShow(true);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+
+    const [loading, setLoading] = useState(false)
 
     const handleFormSubmit = (data) => {
         // updateContributions([data])
@@ -30,6 +34,7 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
 
         // Save the form data and update the form submission status
         // Update the goals list state
+        //Update storage
         //setFormData(data);
         addGoals([data])
         handleClose()
@@ -54,7 +59,7 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
 
         <div className="App">
             <DashboardHeader />
-            <GoalsList goals={goals} removeGoals={removeGoals} />
+            <GoalsList goals={goals} loading={loading} setLoading={setLoading} removeGoals={removeGoals} setGoals={setGoals} addGoals={addGoals} />
             <AddGoalButton goal={goals} handleShow={handleShow} updateGoals={addGoals} />
 
             {/* <AddGoalModal show={show} onHide={handleClose} /> */}

@@ -29,20 +29,20 @@ const GoalForm = ({ onSubmit, onCancel }) => {
     //console.log(errors);
 
     // Get the value of the 'Type' input
-    const type = watch('Type');
+    const type = watch('type');
 
 
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             {/* Input field for goal name */}
-            <input type="text" placeholder="Name" {...register("Name", { required: true, maxLength: 80 })} />
+            <input type="text" placeholder="Name" {...register("name", { required: true, maxLength: 80 })} />
 
             {/* Input field for goal end date */}
-            <input type="date" placeholder="Enddate" {...register("Enddate", { required: true, maxLength: 100 })} />
+            <input type="date" placeholder="Enddate" {...register("enddate", { required: true, maxLength: 100 })} />
 
             {/* Select field for goal type */}
-            <select {...register("Type", { required: true })}>
+            <select {...register("type", { required: true })}>
                 <option value="">Select a goal</option>
                 <option value="Program">Program</option>
                 <option value="Workout">Workout</option>
