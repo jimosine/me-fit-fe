@@ -15,6 +15,8 @@ function App() {
 
   const [goals, setGoals] = useState([]);
 
+  const [profile, setProfile] = useState({})
+
   function addGoals(goal) {
     setGoals(goals.concat(goal));
     //setGoals(...goals, goal);
@@ -33,7 +35,7 @@ function App() {
           <Route path='/' element={<Dashboard goals={goals} setGoals={setGoals} addGoals={addGoals} />} />
           <Route path='/dashboard' element={<Dashboard goals={goals} setGoals={setGoals} addGoals={addGoals} />} />
           <Route path='/library' element={<Library updateContributions={addContributions} />} />
-          <Route path='/profile' element={<Profile contributions={contributions} />} />
+          <Route path='/profile' element={<Profile contributions={contributions} profile={profile} setProfile={setProfile} />} />
           <Route path='*' element={
             <>
               <h1>There's nothing here 👻</h1>
