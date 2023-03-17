@@ -2,6 +2,8 @@ import { useForm, Controller } from 'react-hook-form';
 import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Select from 'react-select';
+import { storageRead } from '../../utils/storage';
+
 
 const ContributionForm = ({ onSubmit }) => {
     // Initialize form using useForm hook
@@ -20,18 +22,16 @@ const ContributionForm = ({ onSubmit }) => {
     const type = watch('Type');
 
     //OPTIONS FOR THE MULTI SELECT FOR PROGRAM CONTRIBUTIONS
-    const programOptions = [
-        { value: '1', label: 'Workout 1' },
-        { value: '2', label: 'Workout 2' },
-        { value: '3', label: 'Workout 3' }
-    ]
+    const programOptions = storageRead('workouts').map(item => ({
+        value: item.id,
+        label: item.name,
+    }))
 
     //OPTIONS FOR THE MULTI SELECT
-    const workoutOptions = [
-        { value: '1', label: 'Exercise 1' },
-        { value: '2', label: 'Exercise 2' },
-        { value: '3', label: 'Exercise 3' }
-    ]
+    const workoutOptions = storageRead('exercises').map(item => ({
+        value: item.id,
+        label: item.name,
+    }))
 
 
     return (

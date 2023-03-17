@@ -4,9 +4,10 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import ProfileInfo from "../components/Profile/ProfileInfo";
 import AddGoalButton from "../components/Dashboard/AddGoalButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import ProfileAchievements from "../components/Profile/ProfileAchievments";
+import { storageRead, storageSave } from "../utils/storage";
 
 const Profile = ({ contributions, profile, setProfile }) => {
     const handleShow = () => setShow(true);
@@ -18,6 +19,7 @@ const Profile = ({ contributions, profile, setProfile }) => {
     const handleFormSubmit = (data) => {
         console.log(data);
         setProfile(data)
+        storageSave('profile', data)
         // // Add UserID & isCompleted to the form data
         // data.UserID = 1
         // data.completed = false
@@ -26,6 +28,11 @@ const Profile = ({ contributions, profile, setProfile }) => {
 
     };
 
+    useEffect(() => {
+        setProfile(storageRead('profile'))
+    }, [setProfile]);
+
+
     return (
         <>
             <div>
@@ -33,7 +40,7 @@ const Profile = ({ contributions, profile, setProfile }) => {
             </div>
 
             {/* if profile not set, first set */}
-            {!profile.first_name &&
+            {storageRead('profile') === null &&
                 <>
                     <p>Please fill in your profile page first.</p>
 
@@ -42,7 +49,7 @@ const Profile = ({ contributions, profile, setProfile }) => {
             }
 
 
-            {profile.first_name &&
+            {storageRead('profile') !== null &&
                 <Tabs
                     defaultActiveKey="info"
                     id="justify-tab-example"

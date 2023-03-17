@@ -17,6 +17,8 @@ function App() {
 
   const [profile, setProfile] = useState({})
 
+
+
   function addGoals(goal) {
     setGoals(goals.concat(goal));
     //setGoals(...goals, goal);

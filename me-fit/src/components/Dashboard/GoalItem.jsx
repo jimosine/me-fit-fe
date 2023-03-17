@@ -21,7 +21,7 @@ const GoalItem = ({ goal, removeGoals, index }) => {
                             {goal.Type} /
                             {goal.Enddate} /
                             {goal.completed.toString()} /
-                            {goal.ProgramID} /
+                            {goal.workouts.map(item => item.label + " | ")} /
                             {/* <button onClick={handleButtonClick}>Remove</button> /
                         <button >More info</button> */}
                         </li>
@@ -32,7 +32,7 @@ const GoalItem = ({ goal, removeGoals, index }) => {
                             {goal.Type} /
                             {goal.Enddate} /
                             {goal.completed.toString()} /
-                            {goal.WorkoutID} /
+                            {goal.exercises.map(item => item.label + " | ")} /
                             {/* <button onClick={handleButtonClick}>Remove</button>
                             <button>More info</button> */}
                         </li>

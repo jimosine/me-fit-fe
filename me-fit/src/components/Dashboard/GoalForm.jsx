@@ -1,8 +1,29 @@
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
+import Select from 'react-select';
+import { storageRead } from '../../utils/storage';
+
 
 const GoalForm = ({ onSubmit, onCancel }) => {
     // Initialize form using useForm hook
-    const { register, handleSubmit, formState: { errors }, watch } = useForm();
+    const {
+        handleSubmit,
+        register,
+        control,
+        watch
+    } = useForm({
+        defaultValues: {}
+    });
+
+    const programOptions = storageRead('workouts').map(item => ({
+        value: item.id,
+        label: item.name,
+    }))
+
+    //OPTIONS FOR THE MULTI SELECT
+    const workoutOptions = storageRead('exercises').map(item => ({
+        value: item.id,
+        label: item.name,
+    }))
 
     // Log form errors to console
     //console.log(errors);
@@ -30,16 +51,26 @@ const GoalForm = ({ onSubmit, onCancel }) => {
             {/* Conditional rendering for Program options */}
             {type === 'Program' &&
                 <>
-                    {/* Select field for program ID */}
-                    <select {...register("ProgramID", { required: true, validate: v => v.length })} multiple>
-                        {/* <option value="">Select a program</option> */}
-                        <option value="1">Program 1</option>
-                        <option value="2">Program 2</option>
-                        <option value="3">Program 3</option>
-                    </select>
+                    <Controller
+                        control={control}
+                        name="workouts"
+                        render={({
+                            field: { onChange, onBlur, value, name, ref },
+                        }) => (
+                            <Select
+                                options={programOptions}
+                                onChange={onChange}
+                                isMulti={true}
+                                onBlur={onBlur}
+                                value={value}
+                                name={name}
+                                ref={ref}
+                            />
+                        )}
+                    />
 
                     {/* Display error message for ProgramID field */}
-                    {errors.ProgramID && <p>{errors.ProgramID.message}</p>}
+                    {/* {errors.ProgramID && <p>{errors.ProgramID.message}</p>} */}
                 </>
             }
 
@@ -47,15 +78,26 @@ const GoalForm = ({ onSubmit, onCancel }) => {
             {type === 'Workout' &&
                 <>
                     {/* Select field for workout ID */}
-                    <select {...register("WorkoutID", { required: true, validate: v => v.length })} multiple>
-                        {/* <option value="">Select a workout</option> */}
-                        <option value="1">Workout 1</option>
-                        <option value="2">Workout 2</option>
-                        <option value="3">Workout 3</option>
-                    </select>
+                    <Controller
+                        control={control}
+                        name="exercises"
+                        render={({
+                            field: { onChange, onBlur, value, name, ref },
+                        }) => (
+                            <Select
+                                options={workoutOptions}
+                                onChange={onChange}
+                                isMulti={true}
+                                onBlur={onBlur}
+                                value={value}
+                                name={name}
+                                ref={ref}
+                            />
+                        )}
+                    />
 
                     {/* Display error message for WorkoutID field */}
-                    {errors.WorkoutID && <p>{errors.WorkoutID.message}</p>}
+                    {/* {errors.WorkoutID && <p>{errors.WorkoutID.message}</p>} */}
                 </>
             }
 
