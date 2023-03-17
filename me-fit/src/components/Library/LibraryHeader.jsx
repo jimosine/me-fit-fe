@@ -1,21 +1,21 @@
 // Import required modules and dependencies
 
 import Container from 'react-bootstrap/Container';
-import { Row, Col } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 const LibraryHeader = ({ selectedButton, handleButtonClick }) => {
-    // Define state for the selected button
-
 
 
 
     return (
         <header>
-            <Container className="library-header" fluid>
-                <Row className="library-header-description">
-                    <Col>{selectedButton}</Col>
+            <Container fluid>
+                <Row >
+                    <div className='dash-header'>
+                        <h1> Library: {selectedButton}</h1>
+                    </div>
                 </Row>
             </Container>
             <Container className="library-options">
