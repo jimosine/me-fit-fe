@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { useState } from "react";
+import { storageSave } from './utils/storage';
 
 function App() {
 
@@ -17,9 +18,11 @@ function App() {
 
   const [profile, setProfile] = useState({})
 
+
+
   function addGoals(goal) {
     setGoals(goals.concat(goal));
-    //setGoals(...goals, goal);
+    storageSave('goals', goals.concat(goal))
   }
 
   function addContributions(contribution) {

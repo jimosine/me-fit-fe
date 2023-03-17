@@ -13,26 +13,37 @@ const GoalItem = ({ goal, removeGoals, index }) => {
         //If Type === Program, don't show the empty workout array, and vice versa.
         <div className='goal-item'>
             <Accordion.Item eventKey={`${index}`}>
-                <Accordion.Header>{goal.Name} and {index}</Accordion.Header>
+                <Accordion.Header>{goal.name} and {index}</Accordion.Header>
                 <Accordion.Body>
-                    {goal.Type === "Program" &&
+                    {goal.type === "Program" &&
                         <li>
-                            {goal.Name} /
-                            {goal.Type} /
-                            {goal.Enddate} /
+                            {goal.name} /
+                            {goal.type} /
+                            {goal.enddate} /
                             {goal.completed.toString()} /
-                            {goal.ProgramID} /
+                            {goal.workouts.map(item => item.label + " | ")} /
                             {/* <button onClick={handleButtonClick}>Remove</button> /
                         <button >More info</button> */}
                         </li>
                     }
-                    {goal.Type === "Workout" &&
+                    {goal.type === "Workout" &&
                         <li>
-                            {goal.Name} /
-                            {goal.Type} /
-                            {goal.Enddate} /
+                            {goal.name} /
+                            {goal.type} /
+                            {goal.enddate} /
                             {goal.completed.toString()} /
-                            {goal.WorkoutID} /
+                            {goal.exercises.map(item => item.label + " | ")} /
+                            {/* <button onClick={handleButtonClick}>Remove</button>
+                            <button>More info</button> */}
+                        </li>
+                    }
+                    {goal.type === "Legs" &&
+                        <li>
+                            {goal.name} /
+                            {goal.type} /
+                            {goal.enddate} /
+                            {/* {goal.completed.toString()} / */}
+                            {/* {goal.exercises.map(item => item.label + " | ")} / */}
                             {/* <button onClick={handleButtonClick}>Remove</button>
                             <button>More info</button> */}
                         </li>

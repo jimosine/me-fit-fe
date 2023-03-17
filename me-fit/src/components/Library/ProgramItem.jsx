@@ -2,11 +2,16 @@ import Card from 'react-bootstrap/Card';
 import { Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import React, { useState } from 'react';
+import { storageRead } from '../../utils/storage';
 
 const ProgramItem = ({ cardTitle, selectedButton, program }) => {
     const [lgShow, setLgShow] = useState(false);
 
+    //TO ALSO GET THE WORKOUT NAMES
     const workoutsIds = program.workoutsId
+    const workouts = storageRead('workouts')
+    const correctWorkouts = workouts.filter(item => workoutsIds.includes(item.id))
+    const workoutNames = correctWorkouts.map(item => item.name)
 
 
     return (
@@ -44,14 +49,14 @@ const ProgramItem = ({ cardTitle, selectedButton, program }) => {
                                         style={{ marginRight: '20px', width: '50%' }}
                                     />
                                     <div style={{ width: '50%' }}>
-                                        <p><h4>Type:</h4> {program.type}</p>
-                                        <p><h4>Workouts:</h4>
-                                            <ul>
-                                                {program.workoutsId.map(item => (<li key={item}>{item}</li>))}
+                                        <h4>Type:</h4> <p>{program.type}</p>
+                                        <h4>Workouts:</h4>
+                                        <ul>
+                                            {workoutNames.map((item, index) => (<li key={index}>{item}</li>))}
 
-                                            </ul>
-                                        </p>
-                                        <p><h4>Description:</h4> Hier komt de beschrijving</p>
+                                        </ul>
+
+                                        <h4>Description:</h4> <p>Hier komt de beschrijving</p>
                                     </div>
                                 </div>
                             </Modal.Body>
