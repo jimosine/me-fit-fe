@@ -12,6 +12,16 @@
   /* max-width: 350px; */
 }
 
+
+.progress-bar {
+  width: 20%;
+}
+
+.goals-accordion {
+  margin: auto;
+  width: 50%;
+}
+
 .contribution-form-field {
   padding: 10px;
   margin: 10px;

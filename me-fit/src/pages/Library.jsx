@@ -38,8 +38,29 @@ const Library = ({ updateContributions }) => {
 
         updateContributions([data])
         console.log(data);
+
         //EERST EEN POST MET ALLES BEHALVE WORKOUTS/EXERCISES
+        fetch("https://me-fit-nl.azurewebsites.net/exercise", {
+            method: "POST",
+            body: JSON.stringify({
+                "name": data.name,
+                "description": data.description,
+                "musclegroup": data.musclegroup,
+                "vidlink": data.vidlink,
+                "imglink": data.imglink,
+                "repetitions": data.repetitions
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+            .then((response) => console.log(response))
+
+
+
         //DAN EEN UPDATE MET WORKOUTS/EXERCISES
+
+        //SLUIT DE FORM MODAL
         handleClose()
 
     };
