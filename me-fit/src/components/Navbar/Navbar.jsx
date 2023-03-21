@@ -32,6 +32,7 @@ function NavBar() {
                 <NavDropdown title={navDropdownTitle} id="collasible-nav-dropdown" drop="start">
                     <NavDropdown.Item as="button" className="navbar-dropdown-item"><Nav.Link > <Link className="text-decoration-none text-black" to="/profile"> Profile </Link></Nav.Link></NavDropdown.Item>
                     <NavDropdown.Item as="button" className="navbar-dropdown-item"><Nav.Link > <Link className="text-decoration-none text-black" to="/profile"> Settings </Link></Nav.Link></NavDropdown.Item>
+                    <NavDropdown.Item as="button" className="navbar-dropdown-item"><Nav.Link > <Link className="text-decoration-none text-black" to="/login"> login </Link></Nav.Link></NavDropdown.Item>
                     <NavDropdown.Item as="button" onClick={onCancel} className="navbar-dropdown-item"><Nav.Link > <Link className="text-decoration-none text-black" to="/dashboard"> Logout </Link></Nav.Link></NavDropdown.Item>
                 </NavDropdown>
             </Nav>
