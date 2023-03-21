@@ -12,7 +12,7 @@ const GoalsList = ({ goals, removeGoals, setGoals, loading, setLoading }) => {
             const fetchData = async () => {
                 Promise.all([
                     // fetch('https://jb-lost-in-translation-api-production.up.railway.app/trainers'
-                    await fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/goal'),
+                    await fetch('https://me-fit-nl.azurewebsites.net/goal'),
                 ])
                     .then(([response]) =>
                         Promise.all([response.json()])
@@ -53,7 +53,7 @@ const GoalsList = ({ goals, removeGoals, setGoals, loading, setLoading }) => {
 
             {goals.length !== 0 &&
 
-                <Accordion >
+                <Accordion className="goals-accordion">
                     {goalsItems}
 
 

@@ -39,6 +39,22 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
         addGoals([data])
         handleClose()
 
+        //EERST EEN POST MET ALLES BEHALVE WORKOUTS/EXERCISES
+        fetch("https://me-fit-nl.azurewebsites.net/goal", {
+            method: "POST",
+            body: JSON.stringify({
+                "name": data.name,
+                "type": data.type,
+                "enddate": data.enddate,
+                "profileId": data.UserID
+
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+            .then((response) => console.log(response))
+
     };
 
     //Function passed down to add a new goal by setting the state

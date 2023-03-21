@@ -1,5 +1,4 @@
 import { useForm, Controller } from 'react-hook-form';
-import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Select from 'react-select';
 import { storageRead } from '../../utils/storage';
@@ -35,8 +34,13 @@ const ContributionForm = ({ onSubmit }) => {
         label: item.name,
     }))
 
-    const options = [
+    const exerciseOptions = [
+        { value: 'Calves', label: 'Calves' },
+        { value: 'Biceps', label: 'Biceps' },
+        { value: 'Abs', label: 'Abs' },
+    ];
 
+    const options = [
         { value: 'Program', label: 'Program' },
         { value: 'Workout', label: 'Workout' },
         { value: 'Exercise', label: 'Exercise' },
@@ -230,24 +234,56 @@ const ContributionForm = ({ onSubmit }) => {
 
             {type !== undefined && type.value === 'Exercise' &&
                 <>
-                    <input type="text" placeholder="Name" {...register("Name", { required: true, maxLength: 80 })} />
+                    <input
+                        className="contribution-form-field-name"
+                        type="text"
+                        placeholder="Name"
+                        {...register("name", { required: true, maxLength: 80 })} />
 
-                    <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlTextarea1"
-                    >
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
-                    </Form.Group>
-                    <select {...register("Muscle Group", { required: true })}>
-                        <option value="Calves">Calves </option>
-                        <option value="Biceps"> Biceps </option>
-                        <option value="Abs">Abs </option>
-                    </select>
-                    <div>
-                        <input type="url" placeholder="Video link" {...register("Video link", { maxLength: 100 })} />
-                    </div>
-                    <input type="number" placeholder="Repetitions" {...register("Repetitions", { required: true })} />
+                    <input
+                        className="contribution-form-field-name"
+                        type="text"
+                        placeholder="Image link..."
+                        {...register("imglink")}
+                    />
+
+                    <input type="url"
+                        className="contribution-form-field-name"
+                        placeholder="Video link"
+                        {...register("vidlink", { maxLength: 100 })} />
+
+                    <textarea rows="2"
+                        className="contribution-form-field-description"
+                        type="text"
+                        placeholder="Short description..."
+                        {...register("description")}
+                    />
+
+                    <input
+                        className="contribution-form-field-name"
+                        type="number"
+                        placeholder="Repetitions"
+                        {...register("repetitions", { required: true })} />
+
+                    <Controller
+                        control={control}
+                        name="musclegroup"
+                        render={({
+                            field: { onChange, onBlur, value, name, ref },
+                        }) => (
+                            <Select className="contribution-form-field"
+                                options={exerciseOptions}
+                                onChange={onChange}
+                                onBlur={onBlur}
+                                value={value}
+                                name={name}
+                                ref={ref}
+                                placeholder="Muscle Group..."
+                            />
+                        )}
+                    />
+
+
 
                 </>
             }
