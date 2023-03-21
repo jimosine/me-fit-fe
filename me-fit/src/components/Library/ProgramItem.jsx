@@ -18,12 +18,15 @@ const ProgramItem = ({ cardTitle, selectedButton, program }) => {
         <>
 
             <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="https://via.placeholder.com/640x360" />
+                <Card.Img
+                    variant="top"
+                    src={program.imglink}
+                    className="ProgramItem-img" />
                 <Card.Body>
                     <Card.Title>{cardTitle}</Card.Title>
-                    <Card.Text>
-                        Very good training by a very good trainer
-                        {/* {program.description} */}
+                    <Card.Text style={{ height: '85px' }}>
+
+                        {program.description_short}
                     </Card.Text>
                     <Button onClick={() => setLgShow(true)} variant="success">More info</Button>
 
@@ -44,7 +47,7 @@ const ProgramItem = ({ cardTitle, selectedButton, program }) => {
                             <Modal.Body>
                                 <div style={{ display: 'flex' }}>
                                     <img
-                                        src="https://image-placeholder.com/images/actual-size/375x500.png"
+                                        src={program.imglink}
                                         alt="exercise"
                                         style={{ marginRight: '20px', width: '50%' }}
                                     />
@@ -56,7 +59,7 @@ const ProgramItem = ({ cardTitle, selectedButton, program }) => {
 
                                         </ul>
 
-                                        <h4>Description:</h4> <p>Hier komt de beschrijving</p>
+                                        <h4>Description:</h4> <p>{program.description_long}</p>
                                     </div>
                                 </div>
                             </Modal.Body>

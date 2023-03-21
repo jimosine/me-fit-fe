@@ -25,8 +25,21 @@ const Library = ({ updateContributions }) => {
 
 
     const handleFormSubmit = (data) => {
+        //handle de .value shit:
+        //PROGRAMS:
+        if (data.Type.value === "Program") {
+            data.Type = data.Type.value
+            data.programType = data.programType.value
+        } else if (data.Type.value === "Workout") {
+            data.Type = data.Type.value
+            data.workoutType = data.workoutType.value
+
+        }
+
         updateContributions([data])
         console.log(data);
+        //EERST EEN POST MET ALLES BEHALVE WORKOUTS/EXERCISES
+        //DAN EEN UPDATE MET WORKOUTS/EXERCISES
         handleClose()
 
     };
@@ -46,14 +59,28 @@ const Library = ({ updateContributions }) => {
                         Add new contribution
                     </Button>
 
-                    <Modal show={show} onHide={handleClose}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>New contribution...</Modal.Title>
+
+                    <Modal
+                        show={show}
+                        onHide={handleClose}
+                        aria-labelledby="contained-modal-title-vcenter"
+                        centered>
+                        <Modal.Header
+                            closeButton
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                            }} >
+                            <Modal.Title className="ms-auto" >Contribution Form</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <ContributionForm onSubmit={handleFormSubmit} />
 
                         </Modal.Body>
+
+
+
                         {/* <Modal.Footer>
                             <Button variant="secondary" onClick={handleClose}>
                                 Close
@@ -65,7 +92,7 @@ const Library = ({ updateContributions }) => {
                     </Modal></Col>
             </Row>
 
-        </div>
+        </div >
     )
 }
 export default Library

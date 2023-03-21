@@ -19,10 +19,12 @@ const LibraryList = ({ selectedButton }) => {
         if (storageRead('programs') === null) {
             console.log("is nog leeg");
             Promise.all([
-                // fetch('https://jb-lost-in-translation-api-production.up.railway.app/trainers'
-                fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/program'),
-                fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/exercise'),
-                fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/workout'),
+                // fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/program'),
+                // fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/exercise'),
+                // fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/workout'),
+                fetch('https://me-fit-nl.azurewebsites.net/program'),
+                fetch('https://me-fit-nl.azurewebsites.net/exercise'),
+                fetch('https://me-fit-nl.azurewebsites.net/workout'),
 
             ])
                 .then(([resPrograms, resExercises, resWorkouts]) =>
@@ -55,7 +57,7 @@ const LibraryList = ({ selectedButton }) => {
 
     const workoutsList =
         workouts.map(item => (
-            <div className="list-item"><WorkoutItem key={item.id} cardTitle={item.name} selectedButton={selectedButton} workout={item} /></div>
+            <div className="list-item"><WorkoutItem exercises={exercises} key={item.id} cardTitle={item.name} selectedButton={selectedButton} workout={item} /></div>
         ))
 
     return (

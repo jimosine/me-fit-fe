@@ -3,24 +3,30 @@ import { Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import React, { useState } from 'react';
 
-const WorkoutItem = ({ cardTitle, selectedButton, workout }) => {
+const WorkoutItem = ({ cardTitle, selectedButton, workout, exercises }) => {
     const [lgShow, setLgShow] = useState(false);
 
-    //const workoutsIds = program.workoutsId
+    const workoutsIds = workout.exercisesId
+    const workoutsNames = exercises.filter(item => workoutsIds.includes(item.id))//.map(item => item.name)
+
 
 
     return (
         <>
 
             <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="https://via.placeholder.com/640x360" />
+                <Card.Img
+                    variant="top"
+                    src={workout.imglink}
+                    className="ExerciseItem-img" />
                 <Card.Body>
                     <Card.Title>{cardTitle}</Card.Title>
-                    <Card.Text>
-                        Very good training by a very good trainer
+                    <Card.Text style={{ height: '120px' }}>
+                        {workout.description_short}
                         {/* {program.description} */}
                     </Card.Text>
                     <Button onClick={() => setLgShow(true)} variant="success">More info</Button>
+
 
                     {/* For Programs */}
                     {selectedButton === 'Workouts' &&
@@ -39,19 +45,19 @@ const WorkoutItem = ({ cardTitle, selectedButton, workout }) => {
                             <Modal.Body>
                                 <div style={{ display: 'flex' }}>
                                     <img
-                                        src="https://image-placeholder.com/images/actual-size/375x500.png"
-                                        alt="exercise"
+                                        src={workout.imglink}
+                                        alt="workout"
                                         style={{ marginRight: '20px', width: '50%' }}
                                     />
                                     <div style={{ width: '50%' }}>
                                         <p><h4>Type:</h4> {workout.type}</p>
-                                        <p><h4>Exercises:</h4>
-                                            <ul>
-                                                {workout.exercisesId.map(item => (<li key={item}>{item}</li>))}
+                                        <p><h4>Exercises:</h4></p>
+                                        <ul>
+                                            {workoutsNames.map(item => (<li key={item.id}>{item.name}</li>))}
 
-                                            </ul>
-                                        </p>
-                                        <p><h4>Description:</h4> Hier komt de beschrijving</p>
+                                        </ul>
+
+                                        <p><h4>Description:</h4> {workout.description_long}</p>
                                     </div>
                                 </div>
                             </Modal.Body>

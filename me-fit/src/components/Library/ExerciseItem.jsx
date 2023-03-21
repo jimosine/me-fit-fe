@@ -11,13 +11,17 @@ const ExerciseItem = ({ cardTitle, selectedButton, exercise }) => {
         <>
 
             <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="https://via.placeholder.com/640x360" />
+                <Card.Img
+                    variant="top"
+                    src={exercise.imglink}
+                    className="ExerciseItem-img"
+                />
                 <Card.Body>
                     <Card.Title>{cardTitle}</Card.Title>
                     {/* <Card.Text>
                         Very good training by a very good trainer
                     </Card.Text> */}
-                    <Button onClick={() => setLgShow(true)} variant="success">More info</Button>
+                    <Button onClick={() => setLgShow(true)} variant="success">More info </Button>
 
                     {/* For exercise */}
                     {selectedButton === 'Exercises' &&
@@ -36,7 +40,7 @@ const ExerciseItem = ({ cardTitle, selectedButton, exercise }) => {
                             <Modal.Body>
                                 <div style={{ display: 'flex' }}>
                                     <img
-                                        src="https://image-placeholder.com/images/actual-size/375x500.png"
+                                        src={exercise.imglink}
                                         alt="exercise"
                                         style={{ marginRight: '20px', width: '50%' }}
                                     />

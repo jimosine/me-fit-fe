@@ -14,13 +14,13 @@ const GoalForm = ({ onSubmit, onCancel }) => {
         defaultValues: {}
     });
 
-    const programOptions = storageRead('workouts').map(item => ({
+    const programOptions = storageRead('programs').map(item => ({
         value: item.id,
         label: item.name,
     }))
 
     //OPTIONS FOR THE MULTI SELECT
-    const workoutOptions = storageRead('exercises').map(item => ({
+    const workoutOptions = storageRead('workouts').map(item => ({
         value: item.id,
         label: item.name,
     }))
@@ -53,7 +53,7 @@ const GoalForm = ({ onSubmit, onCancel }) => {
                 <>
                     <Controller
                         control={control}
-                        name="workouts"
+                        name="programs"
                         render={({
                             field: { onChange, onBlur, value, name, ref },
                         }) => (
@@ -80,7 +80,7 @@ const GoalForm = ({ onSubmit, onCancel }) => {
                     {/* Select field for workout ID */}
                     <Controller
                         control={control}
-                        name="exercises"
+                        name="workouts"
                         render={({
                             field: { onChange, onBlur, value, name, ref },
                         }) => (

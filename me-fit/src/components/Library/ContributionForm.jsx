@@ -21,11 +21,13 @@ const ContributionForm = ({ onSubmit }) => {
     // Get the value of the 'Type' input
     const type = watch('Type');
 
+
     //OPTIONS FOR THE MULTI SELECT FOR PROGRAM CONTRIBUTIONS
     const programOptions = storageRead('workouts').map(item => ({
         value: item.id,
         label: item.name,
     }))
+
 
     //OPTIONS FOR THE MULTI SELECT
     const workoutOptions = storageRead('exercises').map(item => ({
@@ -33,30 +35,101 @@ const ContributionForm = ({ onSubmit }) => {
         label: item.name,
     }))
 
+    const options = [
+
+        { value: 'Program', label: 'Program' },
+        { value: 'Workout', label: 'Workout' },
+        { value: 'Exercise', label: 'Exercise' },
+    ];
+
+    const programTypeOptions = [
+        { value: 'Cardio', label: 'Cardio' },
+        { value: 'Strength', label: 'Strength' },
+        { value: 'Yoga', label: 'Yoga' }
+    ];
+    const workoutTypeOptions = [
+        { value: 'Upper Body', label: 'Upper Body' },
+        { value: 'Lower Body', label: 'Lower Body' },
+        { value: 'HIIT', label: 'HIIT' }
+    ];
+
+
+
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             {/* Select field for contribution type */}
-            <select {...register("Type", { required: true })}>
-                {/* <select {...register("Type", { required: true })} onChange={handleTypeChange}> */}
-                <option value="">What do you want to add?</option>
-                <option value="Program">Program</option>
-                <option value="Workout">Workout</option>
-                <option value="Exercise">Exercise</option>
-            </select>
+
+            <Controller
+                control={control}
+                name="Type"
+                render={({
+                    field: { onChange, onBlur, value, name, ref },
+                }) => (
+                    <Select className="contribution-form-field"
+                        options={options}
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        value={value}
+                        name={name}
+                        ref={ref}
+                    />
+                )}
+            />
 
 
-            {type === 'Program' &&
+            {type !== undefined && type.value === 'Program' &&
 
                 <>
                     <div>
-                        <input type="text" placeholder="Name" {...register("Name", { required: true, maxLength: 80 })} />
+                        <input
+                            className="contribution-form-field-name"
+                            type="text"
+                            placeholder="Name..."
+                            {...register("Name", { required: true, maxLength: 80 })}
+                        />
 
-                        <select {...register("Program Type", { required: true })}>
-                            <option value="Cardio">Cardio </option>
-                            <option value="Strength"> Strength </option>
-                            <option value="Yoga">Yoga </option>
-                        </select>
+                        <input
+                            className="contribution-form-field-name"
+                            type="text"
+                            placeholder="Image link..."
+                            {...register("imageUrl")}
+                        />
+
+
+                        <textarea rows="2"
+                            className="contribution-form-field-description"
+                            type="text"
+                            placeholder="Short description..."
+                            {...register("description_short")}
+                        />
+
+
+                        <textarea rows="5"
+                            className="contribution-form-field-description"
+                            type="text"
+                            placeholder="Long description..."
+                            {...register("description_long")}
+                        />
+
+
+                        <Controller
+                            control={control}
+                            name="programType"
+                            render={({
+                                field: { onChange, onBlur, value, name, ref },
+                            }) => (
+                                <Select className="contribution-form-field"
+                                    options={programTypeOptions}
+                                    onChange={onChange}
+                                    onBlur={onBlur}
+                                    value={value}
+                                    name={name}
+                                    ref={ref}
+                                    placeholder="Program Type..."
+                                />
+                            )}
+                        />
 
                         <Controller
                             control={control}
@@ -64,7 +137,7 @@ const ContributionForm = ({ onSubmit }) => {
                             render={({
                                 field: { onChange, onBlur, value, name, ref },
                             }) => (
-                                <Select
+                                <Select className="contribution-form-field"
                                     options={programOptions}
                                     onChange={onChange}
                                     isMulti={true}
@@ -72,6 +145,7 @@ const ContributionForm = ({ onSubmit }) => {
                                     value={value}
                                     name={name}
                                     ref={ref}
+                                    placeholder="Workouts..."
                                 />
                             )}
                         />
@@ -79,25 +153,64 @@ const ContributionForm = ({ onSubmit }) => {
                 </>
             }
 
-            {
-                type === 'Workout' &&
+            {type !== undefined && type.value === 'Workout' &&
                 <>
                     <div>
-                        <input type="text" placeholder="Name" {...register("Name", { required: true, maxLength: 80 })} />
+                        <input
+                            className="contribution-form-field-name"
+                            type="text"
+                            placeholder="Name..."
+                            {...register("Name", { required: true, maxLength: 80 })}
+                        />
 
-                        <select {...register("Workout Type", { required: true })}>
-                            <option value="Upper Body">Upper Body </option>
-                            <option value="Lower Body"> Lower Body </option>
-                            <option value="HIIT">HIIT </option>
-                        </select>
+                        <input
+                            className="contribution-form-field-name"
+                            type="text"
+                            placeholder="Image link..."
+                            {...register("imageUrl")}
+                        />
+
+
+                        <textarea rows="2"
+                            className="contribution-form-field-description"
+                            type="text"
+                            placeholder="Short description..."
+                            {...register("description_short")}
+                        />
+
+
+                        <textarea rows="5"
+                            className="contribution-form-field-description"
+                            type="text"
+                            placeholder="Long description..."
+                            {...register("description_long")}
+                        />
 
                         <Controller
                             control={control}
-                            name="workouts"
+                            name="workoutType"
                             render={({
                                 field: { onChange, onBlur, value, name, ref },
                             }) => (
-                                <Select
+                                <Select className="contribution-form-field"
+                                    options={workoutTypeOptions}
+                                    onChange={onChange}
+                                    onBlur={onBlur}
+                                    value={value}
+                                    name={name}
+                                    ref={ref}
+                                    placeholder="Workout Type..."
+                                />
+                            )}
+                        />
+
+                        <Controller
+                            control={control}
+                            name="exercises"
+                            render={({
+                                field: { onChange, onBlur, value, name, ref },
+                            }) => (
+                                <Select className="contribution-form-field"
                                     options={workoutOptions}
                                     onChange={onChange}
                                     isMulti={true}
@@ -106,6 +219,7 @@ const ContributionForm = ({ onSubmit }) => {
                                     name={name}
                                     ref={ref}
                                     isSearchable={true}
+                                    placeholder="Exercises..."
                                 />
                             )}
                         />
@@ -114,8 +228,7 @@ const ContributionForm = ({ onSubmit }) => {
             }
 
 
-            {
-                type === 'Exercise' &&
+            {type !== undefined && type.value === 'Exercise' &&
                 <>
                     <input type="text" placeholder="Name" {...register("Name", { required: true, maxLength: 80 })} />
 
@@ -141,8 +254,8 @@ const ContributionForm = ({ onSubmit }) => {
 
 
 
-            <div>
-                <Button variant="secondary" >
+            <div className='contribution-form-buttons'>
+                <Button className='contribution-form-button' variant="secondary" >
                     Close
                 </Button>
                 <Button variant="primary" type="submit">

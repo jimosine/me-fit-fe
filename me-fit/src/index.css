@@ -1,3 +1,51 @@
+.ExerciseItem-img {
+  height: 250px;
+  /* max-height: 350px; */
+  width: 350px;
+  /* max-width: 350px; */
+}
+
+.ProgramItem-img {
+  height: 200px;
+  /* max-height: 350px; */
+  width: 350px;
+  /* max-width: 350px; */
+}
+
+.contribution-form-field {
+  padding: 10px;
+  margin: 10px;
+}
+
+.contribution-form-field-name {
+  padding: 10px;
+  margin: 10px;
+  margin-left: 20px;
+  width: 91.5%;
+  height: 40px;
+}
+
+.contribution-form-field-description {
+  padding: 10px;
+  margin: 10px;
+  margin-left: 20px;
+  width: 91.5%;
+
+}
+
+.contribution-form-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.contribution-form-button {
+  padding: 10px;
+  margin: 10px;
+}
+
+
 .dash-header {
   box-sizing: border-box;
   width: 100%;

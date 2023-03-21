@@ -21,7 +21,7 @@ const GoalItem = ({ goal, removeGoals, index }) => {
                             {goal.type} /
                             {goal.enddate} /
                             {goal.completed.toString()} /
-                            {goal.workouts.map(item => item.label + " | ")} /
+                            {goal.programs.map(item => item.label + " | ")} /
                             {/* <button onClick={handleButtonClick}>Remove</button> /
                         <button >More info</button> */}
                         </li>
@@ -32,7 +32,7 @@ const GoalItem = ({ goal, removeGoals, index }) => {
                             {goal.type} /
                             {goal.enddate} /
                             {goal.completed.toString()} /
-                            {goal.exercises.map(item => item.label + " | ")} /
+                            {goal.workouts.map(item => item.label + " | ")} /
                             {/* <button onClick={handleButtonClick}>Remove</button>
                             <button>More info</button> */}
                         </li>
@@ -50,29 +50,6 @@ const GoalItem = ({ goal, removeGoals, index }) => {
                     }
                 </Accordion.Body>
             </Accordion.Item>
-            {/* {goal.Type === "Program" &&
-                <li>
-                    {goal.Name} /
-                    {goal.Type} /
-                    {goal.Enddate} /
-                    {goal.completed.toString()} /
-                    {goal.ProgramID} /
-                    <button onClick={handleButtonClick}>Remove</button> /
-                    <button >More info</button>
-                </li>
-            }
-
-            {goal.Type === "Workout" &&
-                <li>
-                    {goal.Name} /
-                    {goal.Type} /
-                    {goal.Enddate} /
-                    {goal.completed.toString()} /
-                    {goal.WorkoutID} /
-                    <button onClick={handleButtonClick}>Remove</button>
-                    <button>More info</button>
-                </li>
-            } */}
         </div>
     )
 
