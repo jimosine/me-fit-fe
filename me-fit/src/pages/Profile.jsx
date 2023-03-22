@@ -79,7 +79,8 @@ const Profile = ({ contributions, profile, setProfile }) => {
                         {contributions.length > 0 &&
                             <>
                                 <p>You have: {contributions.length} contributions</p>
-                                <p>{contributions[0].Name} and {contributions[0].Type} and {contributions[0].workouts[0].label}</p>
+                                <p>{contributions[0].name} and {contributions[0].type} </p>
+                                {/* <p>{contributions[0].Name} and {contributions[0].Type} and {contributions[0].workouts[0].label}</p> */}
                             </>
                         }
                     </Tab>
