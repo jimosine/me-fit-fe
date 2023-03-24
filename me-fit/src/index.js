@@ -1,15 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import {initialize} from "./keycloak"
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+
+// Display a loading screen when connecting to Keycloak
+root.render(<h1>Connecting to keycloak</h1>)
+
+initialize()
+    .then(() => { // If No Keycloak Error occurred - Display the App
+        root.render(
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>
+        );
+    })
+    .catch(() => {
+        root.render(
+            <React.StrictMode>
+                <p>Could Not Connect To Keycloak.</p>
+            </React.StrictMode>
+        );
+    });
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
