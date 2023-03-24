@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import {initialize} from "./keycloak"
+import { initialize } from "./keycloak"
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -13,16 +13,12 @@ root.render(<h1>Connecting to keycloak</h1>)
 initialize()
     .then(() => { // If No Keycloak Error occurred - Display the App
         root.render(
-            <React.StrictMode>
-                <App />
-            </React.StrictMode>
+            <App />
         );
     })
     .catch(() => {
         root.render(
-            <React.StrictMode>
-                <p>Could Not Connect To Keycloak.</p>
-            </React.StrictMode>
+            <p>Could Not Connect To Keycloak.</p>
         );
     });
 
