@@ -37,8 +37,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Dashboard goals={goals} setGoals={setGoals} addGoals={addGoals} />} />
           <Route path='/dashboard' element={<Dashboard goals={goals} setGoals={setGoals} addGoals={addGoals} />} />
-          <Route path='/library' element={<Library updateContributions={addContributions} />} />
-          <Route path='/profile' element={<Profile contributions={contributions} profile={profile} setProfile={setProfile} />} />
+          <Route path='/library' element={<Library updateContributions={addContributions} contributions={contributions} />} />
+          <Route path='/profile' element={<Profile setContributions={setContributions} contributions={contributions} profile={profile} setProfile={setProfile} />} />
           <Route path='*' element={
             <>
               <h1>There's nothing here 👻</h1>

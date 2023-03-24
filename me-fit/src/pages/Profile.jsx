@@ -1,5 +1,6 @@
 import ProfileHeader from "../components/Profile/ProfileHeader"
 import ProfileForm from "../components/Profile/ProfileForm";
+import ContributionsTab from "../components/Profile/ContributionsTab";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import ProfileInfo from "../components/Profile/ProfileInfo";
@@ -9,7 +10,7 @@ import { Modal } from "react-bootstrap";
 import ProfileAchievements from "../components/Profile/ProfileAchievments";
 import { storageRead, storageSave } from "../utils/storage";
 
-const Profile = ({ contributions, profile, setProfile }) => {
+const Profile = ({ contributions, profile, setProfile, setContributions }) => {
     const handleShow = () => setShow(true);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -73,15 +74,13 @@ const Profile = ({ contributions, profile, setProfile }) => {
 
                     <Tab eventKey="contributions" title="Contributions">
                         {contributions.length === 0 &&
-                            <p>No contributions yet</p>
+                            <>
+                                <p>No contributions yet</p>
+                            </>
                         }
 
                         {contributions.length > 0 &&
-                            <>
-                                <p>You have: {contributions.length} contributions</p>
-                                <p>{contributions[0].name} and {contributions[0].type} </p>
-                                {/* <p>{contributions[0].Name} and {contributions[0].Type} and {contributions[0].workouts[0].label}</p> */}
-                            </>
+                            <ContributionsTab contributions={contributions} setContributions={setContributions} />
                         }
                     </Tab>
 

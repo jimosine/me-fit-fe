@@ -15,34 +15,57 @@ const LibraryList = ({ selectedButton }) => {
 
     const [workouts, setworkouts] = useState([])
 
-    useEffect(() => {
-        if (storageRead('programs') === null) {
-            console.log("is nog leeg");
-            Promise.all([
-                // fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/program'),
-                // fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/exercise'),
-                // fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/workout'),
-                fetch('https://me-fit-nl.azurewebsites.net/program'),
-                fetch('https://me-fit-nl.azurewebsites.net/exercise'),
-                fetch('https://me-fit-nl.azurewebsites.net/workout'),
+    // useEffect(() => {
+    //     if (storageRead('programs') === null) {
+    //         console.log("is nog leeg");
+    //         Promise.all([
+    //             // fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/program'),
+    //             // fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/exercise'),
+    //             // fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/workout'),
+    //             fetch('https://me-fit-nl.azurewebsites.net/program'),
+    //             fetch('https://me-fit-nl.azurewebsites.net/exercise'),
+    //             fetch('https://me-fit-nl.azurewebsites.net/workout'),
 
-            ])
-                .then(([resPrograms, resExercises, resWorkouts]) =>
-                    Promise.all([resPrograms.json(), resExercises.json(), resWorkouts.json()])
-                )
-                .then(([dataPrograms, dataExercises, dataWorkouts]) => {
-                    setPrograms(dataPrograms);
-                    setExercises(dataExercises);
-                    setworkouts(dataWorkouts)
-                    storageSave('programs', dataPrograms)
-                    storageSave('exercises', dataExercises)
-                    storageSave('workouts', dataWorkouts)
-                });
-        } else {
-            setPrograms(storageRead('programs'))
-            setExercises(storageRead('exercises'))
-            setworkouts(storageRead('workouts'))
-        }
+    //         ])
+    //             .then(([resPrograms, resExercises, resWorkouts]) =>
+    //                 Promise.all([resPrograms.json(), resExercises.json(), resWorkouts.json()])
+    //             )
+    //             .then(([dataPrograms, dataExercises, dataWorkouts]) => {
+    //                 setPrograms(dataPrograms);
+    //                 setExercises(dataExercises);
+    //                 setworkouts(dataWorkouts)
+    //                 storageSave('programs', dataPrograms)
+    //                 storageSave('exercises', dataExercises)
+    //                 storageSave('workouts', dataWorkouts)
+    //             });
+    //     } else {
+    //         setPrograms(storageRead('programs'))
+    //         setExercises(storageRead('exercises'))
+    //         setworkouts(storageRead('workouts'))
+    //     }
+    // }, []);
+
+    useEffect(() => {
+        Promise.all([
+            // fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/program'),
+            // fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/exercise'),
+            // fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/workout'),
+            fetch('https://me-fit-nl.azurewebsites.net/program'),
+            fetch('https://me-fit-nl.azurewebsites.net/exercise'),
+            fetch('https://me-fit-nl.azurewebsites.net/workout'),
+
+        ])
+            .then(([resPrograms, resExercises, resWorkouts]) =>
+                Promise.all([resPrograms.json(), resExercises.json(), resWorkouts.json()])
+            )
+            .then(([dataPrograms, dataExercises, dataWorkouts]) => {
+                setPrograms(dataPrograms);
+                setExercises(dataExercises);
+                setworkouts(dataWorkouts)
+                storageSave('programs', dataPrograms)
+                storageSave('exercises', dataExercises)
+                storageSave('workouts', dataWorkouts)
+            });
     }, []);
 
     const programsList =

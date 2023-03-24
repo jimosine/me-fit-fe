@@ -3,6 +3,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
+import { storageDelete } from '../../utils/storage';
 
 const GoalItem = ({ goal, removeGoals, index }) => {
 
@@ -14,6 +15,7 @@ const GoalItem = ({ goal, removeGoals, index }) => {
         removeGoals(goal)
 
         //EN GOOI UIT DE API & STORAGE
+        // storageDelete('goals')
     }
 
     const handleCheckboxChange = (event) => {
@@ -26,7 +28,7 @@ const GoalItem = ({ goal, removeGoals, index }) => {
 
     let progress = 0
     if (goal.type === "Program") {
-        progress = (checkedCount / goal.programs.length) * 100;
+        progress = (checkedCount / goal.programsId.length) * 100;
     } else {
         progress = 100
     }
@@ -60,14 +62,7 @@ const GoalItem = ({ goal, removeGoals, index }) => {
                             <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                 <span style={{ fontWeight: "bold" }}>Workouts:</span>
                             </p>
-                            <ul style={{ listStyle: "none", paddingLeft: "0" }}>
-                                {goal.programs.map(item => (
-                                    <li style={{ display: "flex", alignItems: "center" }}>
-                                        <span style={{ marginLeft: "1.5rem", marginRight: "1rem", fontWeight: "bold" }}>{item.label}</span>
-                                        <Form.Check onChange={handleCheckboxChange} style={{ marginLeft: "0.5rem" }} />
-                                    </li>
-                                ))}
-                            </ul>
+
                             <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                 <span style={{ fontWeight: "bold" }}>Progress:</span>
                             </p>
