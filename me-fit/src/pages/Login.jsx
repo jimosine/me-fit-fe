@@ -1,10 +1,46 @@
 import * as React from 'react';
 import keycloak from "../keycloak";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "./login.css"
+import {useEffect} from "react";
 
 function Login() {
+    const navigate=useNavigate()
 
+    useEffect(()=>{
+        if (keycloak.authenticated){
+            sessionStorage.setItem("id",keycloak.subject)
+            checkProfile(keycloak.subject.toString())
+            navigate("/dashboard")
+        }
+    },[])
+
+    const createHeaders = () => {
+        return {
+            "Content-Type": "application/json",
+        }
+    }
+
+    async function createprofile(id,firstname,lastname){
+        await fetch("https://me-fit-nl.azurewebsites.net/profile",{
+            method:"POST",
+            headers:createHeaders(),
+            body: JSON.stringify({
+                "userId":id,
+                "firstname":firstname,
+                "lastname":lastname
+            })
+        })
+    }
+
+    async function checkProfile(profileId){
+        const userInfo=await keycloak.loadUserInfo();
+        const res = await fetch(`https://me-fit-nl.azurewebsites.net/profile/userid/${profileId}`);
+        if (!res.ok){
+            // navigate("/profile")
+            createprofile(userInfo.sub,userInfo.given_name,userInfo.family_name)
+        }
+    }
 
     function login(){
         keycloak.login();
