@@ -14,18 +14,12 @@ const GoalItem = ({ goal, removeGoals, index }) => {
     //PROGRESS PROCENT
     const [checkedCount, setCheckedCount] = useState(0);
 
-    //OMSLACHTIG, MAAR ZET DE JUISTE PROGRAM/WORKOUT IDS
-    //HEB NU IN POST GEZET, MISSCHIEN DOET IE T NIET?
-    // goalPostUpdate(goal, setId)
-
     const handleRemove = () => {
-        //doet nu niets, maar haal uit state?
+        //haalt uit state & storage
         removeGoals(goal)
 
         //haalt uit de api
-        // deleteGoal(goal, setId)
-
-
+        deleteGoal(goal, setId)
     }
 
     const handleButtonClick = async () => {

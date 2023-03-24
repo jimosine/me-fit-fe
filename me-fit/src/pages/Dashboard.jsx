@@ -48,67 +48,12 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
         console.log(id);
 
         addGoals([data])
-
-        //EERST EEN POST MET ALLES BEHALVE WORKOUTS/EXERCISES
-        // fetch("https://me-fit-nl.azurewebsites.net/goal", {
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         "name": data.name,
-        //         "type": data.type,
-        //         "enddate": data.enddate,
-        //         "profileId": 6
-        //     }),
-        //     headers: {
-        //         "Content-type": "application/json; charset=UTF-8"
-        //     }
-        // })
-
-        // console.log(data.name);
-        // const goal = data
-
-        // // DAN PROGRAMS UPDATEN
-        // fetch(`https://me-fit-nl.azurewebsites.net/goal/name/${goal.name}`, {
-        //     method: "GET",
-        //     headers: {
-        //         "Content-type": "application/json; charset=UTF-8",
-        //     },
-        // })
-        //     .then((response) => response.json())
-        //     .then((data) => {
-        //         console.log(data.id);
-        //         setId(data.id);
-        //         console.log(id);
-        //         console.log(goal.programsId);
-        //     })
-        //     .catch((error) => console.error(error));
-
-        // //DAN WORKOUTS/PROGRAMS UPDATEN
-
-        // const ids = goal.programsId.map(item => item.value)
-
-        // //LOL CHEAT FIX door id + 1
-
-
-        // fetch(`https://me-fit-nl.azurewebsites.net/goal/${id + 1}/programs`, {
-        //     method: "PUT",
-        //     headers: {
-        //         "Content-type": "application/json; charset=UTF-8",
-        //     },
-        //     body: JSON.stringify(ids),
-        // })
     }
-    // .then(response => response.json())
-    // .then(data => {
-    //     console.log("Programs updated successfully");
-    // })
-    // .catch((error) => console.error(error));
-
-
 
 
     //Function passed down to remove a goal by setting the state
     function removeGoals(goal) {
-        //misschien hier iets met state doen?
+        //state
         setGoals(goals.filter(item => item.name != goal.name));
 
         //en storage
