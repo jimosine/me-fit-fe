@@ -53,7 +53,7 @@ const GoalForm = ({ onSubmit, onCancel }) => {
                 <>
                     <Controller
                         control={control}
-                        name="programs"
+                        name="programsId"
                         render={({
                             field: { onChange, onBlur, value, name, ref },
                         }) => (
