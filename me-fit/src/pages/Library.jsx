@@ -4,12 +4,14 @@ import { Row, Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import ContributionForm from "../components/Library/ContributionForm";
+import { Navigate } from "react-router-dom";
 
 
 import { useState } from "react";
+import { storageDelete, storageSave } from "../utils/storage";
 
 
-const Library = ({ updateContributions }) => {
+const Library = ({ updateContributions, contributions }) => {
 
 
     const [show, setShow] = useState(false);
@@ -30,17 +32,23 @@ const Library = ({ updateContributions }) => {
         if (data.Type.value === "Program") {
             data.Type = data.Type.value
             data.programType = data.programType.value
+
         } else if (data.Type.value === "Workout") {
             data.Type = data.Type.value
             data.workoutType = data.workoutType.value
 
+        } else if (data.Type.value === "Exercise") {
+            data.musclegroup = data.musclegroup.value
+            console.log("hiero")
         }
 
         updateContributions([data])
-        console.log(data);
+
+
 
         //EERST EEN POST MET ALLES BEHALVE WORKOUTS/EXERCISES
         fetch("https://me-fit-nl.azurewebsites.net/exercise", {
+            // fetch("https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/exercise", {
             method: "POST",
             body: JSON.stringify({
                 "name": data.name,
@@ -58,10 +66,13 @@ const Library = ({ updateContributions }) => {
 
 
 
-        //DAN EEN UPDATE MET WORKOUTS/EXERCISES
+        storageSave('contributions', contributions)
+
+
 
         //SLUIT DE FORM MODAL
         handleClose()
+
 
     };
 

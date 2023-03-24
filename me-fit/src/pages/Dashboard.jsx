@@ -32,6 +32,8 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
         data.UserID = 1
         data.completed = false
 
+        console.log(data.programsId.map(item => item.value))
+
         // Save the form data and update the form submission status
         // Update the goals list state
         //Update storage
@@ -46,7 +48,9 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
                 "name": data.name,
                 "type": data.type,
                 "enddate": data.enddate,
-                "profileId": data.UserID
+                "profileId": data.UserID,
+                "programsId": [1], //data.programsId.map(item => item.value),
+                "workoutsId": 1
 
             }),
             headers: {
@@ -65,9 +69,22 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
 
     //Function passed down to remove a goal by setting the state
     function removeGoals(goal) {
-        setGoals(goals.filter(function (item) {
-            return item !== goal
-        }))
+
+        // //STATE
+        // setGoals(goals.filter(function (item) {
+        //     return item !== goal
+        // }))
+
+        //SERVER
+        fetch("https://me-fit-nl.azurewebsites.net/goal", {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+            .then((response) => console.log(response))
+
+
     }
 
 
