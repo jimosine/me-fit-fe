@@ -80,7 +80,7 @@ const GoalForm = ({ onSubmit, onCancel }) => {
                     {/* Select field for workout ID */}
                     <Controller
                         control={control}
-                        name="workouts"
+                        name="workoutsId"
                         render={({
                             field: { onChange, onBlur, value, name, ref },
                         }) => (

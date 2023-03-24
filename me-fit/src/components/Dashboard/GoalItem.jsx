@@ -2,21 +2,38 @@ import Accordion from 'react-bootstrap/Accordion';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
-import { useState } from 'react';
-import { storageDelete } from '../../utils/storage';
+import { useEffect, useState } from 'react';
+import { storageDelete, storageSave } from '../../utils/storage';
+import { deleteGoal, goalPostUpdate, workoutsFromPrograms } from '../../utils/api';
+
 
 const GoalItem = ({ goal, removeGoals, index }) => {
+
+    const [id, setId] = useState(0);
 
     //PROGRESS PROCENT
     const [checkedCount, setCheckedCount] = useState(0);
 
-    //Update the state by filtering the goal array for the current goal item
-    const handleButtonClick = () => {
+    //OMSLACHTIG, MAAR ZET DE JUISTE PROGRAM/WORKOUT IDS
+    //HEB NU IN POST GEZET, MISSCHIEN DOET IE T NIET?
+    // goalPostUpdate(goal, setId)
+
+    const handleRemove = () => {
+        //doet nu niets, maar haal uit state?
         removeGoals(goal)
 
-        //EN GOOI UIT DE API & STORAGE
-        // storageDelete('goals')
+        //haalt uit de api
+        // deleteGoal(goal, setId)
+
+
     }
+
+    const handleButtonClick = async () => {
+
+    };
+
+
+
 
     const handleCheckboxChange = (event) => {
         if (event.target.checked) {
@@ -32,6 +49,13 @@ const GoalItem = ({ goal, removeGoals, index }) => {
     } else {
         progress = 100
     }
+
+    // console.log(goal.programsId);
+    // workoutsFromPrograms(id, goal.programsId)
+
+
+
+
 
 
     return (
@@ -60,18 +84,28 @@ const GoalItem = ({ goal, removeGoals, index }) => {
                                 <span>{goal.type}</span>
                             </p>
                             <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                <span style={{ fontWeight: "bold" }}>Workouts:</span>
+                                <span style={{ fontWeight: "bold" }}>Programs:</span>
                             </p>
+
+                            <ul style={{ listStyle: "none", paddingLeft: "0" }}>
+                                {/* {goal.programsId.map(item => (
+                                    <li style={{ display: "flex", alignItems: "center" }}>
+                                        <span style={{ marginLeft: "1.5rem", marginRight: "1rem", fontWeight: "bold" }}>{item}</span>
+                                        <Form.Check onChange={handleCheckboxChange} style={{ marginLeft: "0.5rem" }} />
+                                    </li>
+                                ))} */}
+                            </ul>
+
 
                             <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                 <span style={{ fontWeight: "bold" }}>Progress:</span>
                             </p>
                             <span><ProgressBar now={progress} label={`${progress}%`} /></span>
                             <div className='contribution-form-buttons'>
-                                <Button className='contribution-form-button' variant="danger" onClick={handleButtonClick} >
+                                <Button className='contribution-form-button' variant="danger" onClick={handleRemove} >
                                     Remove
                                 </Button>
-                                <Button variant="primary">
+                                <Button variant="primary" onClick={handleButtonClick}>
                                     Edit goal
                                 </Button>
                             </div>
@@ -83,8 +117,8 @@ const GoalItem = ({ goal, removeGoals, index }) => {
                             {goal.name} /
                             {goal.type} /
                             {goal.enddate} /
-                            {goal.completed.toString()} /
-                            {goal.workouts.map(item => item.label + " | ")} /
+                            {/* {goal.completed.toString()} /
+                            {goal.workouts.map(item => item.label + " | ")} / */}
                         </li>
                     }
 
