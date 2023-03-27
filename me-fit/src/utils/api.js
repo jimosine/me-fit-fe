@@ -68,9 +68,64 @@ export const deleteGoal = async (goal, setId) => {
     }
 };
 
-export const workoutsFromPrograms = async (id, programIds) => {
-    console.log(id)
-    return programIds
+export const workoutsFromPrograms = async (programIds) => {
+
+    //FIX DIT
+    if (programIds.length < 1) {
+        return false
+    }
+
+    const ids = programIds.map(item => item.value);
+    const workoutIds = [];
+
+    const fetchPromises = ids.map(idx => {
+        return fetch(`https://me-fit-nl.azurewebsites.net/program/${idx}/workouts`, {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+        }).then(response => response.json());
+    });
+
+    const responses = await Promise.all(fetchPromises);
+
+    for (const response of responses) {
+        const ids = response.map(workout => workout.id);
+        workoutIds.push(...ids);
+    }
+
+    return workoutIds;
+};
+
+export const exercisesFromWorkouts = async (workoutIds) => {
+
+    //FIX DIT
+    if (workoutIds.length < 1) {
+        return false
+    }
+    const ids = workoutIds
+    const exerciseIds = [];
+
+    const fetchPromises = ids.map(idx => {
+        return fetch(`https://me-fit-nl.azurewebsites.net/workout/${idx}/exercises`, {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+        }).then(response => response.json());
+    });
+
+    const responses = await Promise.all(fetchPromises);
+
+    for (const response of responses) {
+        const ids = response.map(exercise => exercise.id);
+        exerciseIds.push(...ids);
+    }
+
+    return exerciseIds;
+};
+
+
     // try {
     //     const response = await fetch(`https://me-fit-nl.azurewebsites.net/goal/name/${goal.name}`, {
     //         method: "GET",
@@ -94,5 +149,3 @@ export const workoutsFromPrograms = async (id, programIds) => {
     // catch (error) {
     //     console.error(error);
     // }
-
-}
