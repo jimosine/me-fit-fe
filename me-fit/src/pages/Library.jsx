@@ -4,6 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import ContributionForm from "../components/Library/ContributionForm";
+import {isContributorRole} from "../utils/user"
 import { Navigate } from "react-router-dom";
 
 
@@ -87,9 +88,9 @@ const Library = ({ updateContributions, contributions }) => {
                 <Col>Filter stuff</Col>
                 <Col xs={7}><LibraryList selectedButton={selectedButton} /></Col>
                 <Col>
-                    <Button variant="primary" onClick={handleShow}>
+                    {isContributorRole() && <Button variant="primary" onClick={handleShow}>
                         Add new contribution
-                    </Button>
+                    </Button>}
 
 
                     <Modal

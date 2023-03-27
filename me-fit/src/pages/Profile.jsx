@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import ProfileAchievements from "../components/Profile/ProfileAchievments";
 import { storageRead, storageSave } from "../utils/storage";
+import {isContributorRole} from "../utils/user"
 
 const Profile = ({ contributions, profile, setProfile, setContributions }) => {
     const handleShow = () => setShow(true);
@@ -72,7 +73,7 @@ const Profile = ({ contributions, profile, setProfile, setContributions }) => {
                     </Tab>
 
 
-                    <Tab eventKey="contributions" title="Contributions">
+                    {isContributorRole() && <Tab eventKey="contributions" title="Contributions">
                         {contributions.length === 0 &&
                             <>
                                 <p>No contributions yet</p>
@@ -82,7 +83,7 @@ const Profile = ({ contributions, profile, setProfile, setContributions }) => {
                         {contributions.length > 0 &&
                             <ContributionsTab contributions={contributions} setContributions={setContributions} />
                         }
-                    </Tab>
+                    </Tab>}
 
 
                     <Tab eventKey="achievements" title="Achievements">

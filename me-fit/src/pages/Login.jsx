@@ -3,11 +3,13 @@ import keycloak from "../keycloak";
 import {Link, useNavigate} from "react-router-dom";
 import "./login.css"
 import {useEffect} from "react";
+import {isContributorRole} from "../utils/user"
 
 function Login() {
     const navigate=useNavigate()
 
     useEffect(()=>{
+        console.log(isContributorRole())
         if (keycloak.authenticated){
             sessionStorage.setItem("id",keycloak.subject)
             checkProfile(keycloak.subject.toString())
