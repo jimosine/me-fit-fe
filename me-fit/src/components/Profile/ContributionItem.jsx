@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 
 const ContributionItem = ({ contributions, contribution, setContributions, index }) => {
 
+
+    console.log(contribution);
+
     const [id, setId] = useState(0);
     const name = contribution.name
     const type = contribution.Type.value.toLowerCase()
@@ -73,7 +76,7 @@ const ContributionItem = ({ contributions, contribution, setContributions, index
     }
 
     const handleButtonClick = () => {
-        console.log("lol")
+        console.log("editing")
         setIsEditing(true)
 
 

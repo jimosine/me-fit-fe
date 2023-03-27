@@ -38,8 +38,7 @@ const GoalsList = ({ goals, removeGoals, setGoals, loading, setLoading }) => {
 
 
     //Map over the goals array and create GoalItem components for each entry (goal)
-    const goalsItems = goals.map((goal, index) => <GoalItem key={goal.Name + '-' + index} index={index} goal={goal} removeGoals={removeGoals} />)
-
+    const goalsItems = goals.filter(goal => goal.profile === 3).map((goal, index) => <GoalItem key={goal.Name + '-' + index} index={index} goal={goal} removeGoals={removeGoals} />)
 
 
     return (

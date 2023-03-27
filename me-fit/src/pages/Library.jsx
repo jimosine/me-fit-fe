@@ -39,9 +39,10 @@ const Library = ({ updateContributions, contributions }) => {
 
         } else if (data.Type.value === "Exercise") {
             data.musclegroup = data.musclegroup.value
-            console.log("hiero")
+            console.log("posting exercise")
         }
 
+        console.log(data);
         updateContributions([data])
 
 
@@ -66,7 +67,7 @@ const Library = ({ updateContributions, contributions }) => {
 
 
 
-        storageSave('contributions', contributions)
+        // storageSave('contributions', contributions)
 
 
 

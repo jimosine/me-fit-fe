@@ -31,7 +31,8 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
         }
 
         // Add UserID & isCompleted to the form data
-        data.profile = 6
+        //SET DYNAMICALY
+        data.profile = 3
 
         console.log(data);
         // console.log(data.programsId.map(item => item.value))
@@ -54,11 +55,11 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
     //Function passed down to remove a goal by setting the state
     function removeGoals(goal) {
         //state
-        setGoals(goals.filter(item => item.name != goal.name));
+        setGoals(goals.filter(item => item.name !== goal.name));
 
         //en storage
         storageDelete('goals')
-        storageSave('goals', goals.filter(item => item.name != goal.name))
+        storageSave('goals', goals.filter(item => item.name !== goal.name))
     }
 
     const postGoal = async (data) => {
@@ -70,7 +71,8 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
                     name: data.name,
                     type: data.type,
                     enddate: data.enddate,
-                    profileId: 6,
+                    //VERANDEREN NAAR PROFILE ID UIT DE STORAGE HALEN
+                    profileId: 3,
                 }),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
