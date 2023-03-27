@@ -86,7 +86,7 @@ const Library = ({ updateContributions, contributions }) => {
             </Row>
             <Row>
                 <Col>Filter stuff</Col>
-                <Col xs={7}><LibraryList selectedButton={selectedButton} /></Col>
+                <Col xs={8}><LibraryList selectedButton={selectedButton} /></Col>
                 <Col>
                     <Button variant="primary" onClick={handleShow}>
                         Add new contribution

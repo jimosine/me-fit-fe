@@ -168,12 +168,19 @@ const GoalItem = ({ goal, removeGoals, index }) => {
                             </p>
                             <span><ProgressBar now={progress} label={`${progress}%`} /></span>
                             <div className='contribution-form-buttons'>
-                                <Button className='contribution-form-button' variant="danger" onClick={handleRemove} >
-                                    Remove
-                                </Button>
-                                <Button variant="primary" onClick={handleButtonClick}>
+                                <Button
+                                    className="buttonEdit"
+                                    variant="primary"
+                                    onClick={handleButtonClick}
+                                >
                                     Edit goal
                                 </Button>
+                                <Button
+                                    className="buttonRemove"
+                                    variant="danger"
+                                    onClick={handleRemove}
+                                >
+                                    Remove   </Button>
                             </div>
                         </div>
                     }
