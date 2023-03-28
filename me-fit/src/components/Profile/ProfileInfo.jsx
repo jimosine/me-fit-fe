@@ -12,7 +12,8 @@ const ProfileInfo = ({ profile }) => {
     }
 
     if (localStorage.getItem('completed') !== null) {
-        profile.completedGoals = [localStorage.getItem('completed')]
+        profile.completedGoals = JSON.parse(localStorage.getItem('completed'))
+        console.log(profile.completedGoals);
     }
     else if (profile.completedGoals === null) {
         profile.completedGoals = []

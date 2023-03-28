@@ -37,7 +37,14 @@ const GoalItem = ({ goal, removeGoals, index, setProfile }) => {
         // profileInfo.completedGoals = [goal.id]
         // console.log(profileInfo);
         // setProfile(profileInfo)
-        localStorage.setItem('completed', [goal.id])
+        if (localStorage.getItem('completed') === null) {
+            localStorage.setItem('completed', JSON.stringify([goal.id]))
+            //handleRemove()
+        } else {
+            localStorage.setItem('completed', JSON.stringify(JSON.parse(localStorage.getItem('completed')).concat([goal.id])))
+            //handleRemove()
+        }
+
     };
 
     const handleCheckboxChange = (event) => {
@@ -97,7 +104,7 @@ const GoalItem = ({ goal, removeGoals, index, setProfile }) => {
         <div className='goal-item'>
 
             <Accordion.Item eventKey={`${index}`} style={{ border: "none" }}>
-                <Accordion.Header >{goal.name} and {index}</Accordion.Header>
+                <Accordion.Header >{goal.name}</Accordion.Header>
                 <Accordion.Body>
                     {goal.type === "Program" &&
 
