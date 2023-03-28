@@ -17,6 +17,9 @@ const ProfileInfo = ({ profile }) => {
     else if (profile.completedGoals === null) {
         profile.completedGoals = []
     }
+    else if (profile.completedGoals === undefined) {
+        profile.completedGoals = []
+    }
     else if (profile.completedGoals.length <= 1) {
         profile.completedGoals = []
     }
