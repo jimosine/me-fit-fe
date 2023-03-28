@@ -41,10 +41,10 @@ function App() {
         <NavBar />
         <Routes>
           <Route path='/' element={<KeycloakRoute>
-            <Dashboard goals={goals} setGoals={setGoals} addGoals={addGoals} />
+            <Dashboard goals={goals} setGoals={setGoals} addGoals={addGoals} setProfile={setProfile} />
           </KeycloakRoute>
           } />
-          <Route path='/dashboard' element={<KeycloakRoute><Dashboard goals={goals} setGoals={setGoals} addGoals={addGoals} /></KeycloakRoute>} />
+          <Route path='/dashboard' element={<KeycloakRoute><Dashboard goals={goals} setProfile={setProfile} setGoals={setGoals} addGoals={addGoals} /></KeycloakRoute>} />
           <Route path='/library' element={<KeycloakRoute><Library updateContributions={addContributions} setContributions={setContributions} contributions={contributions} /></KeycloakRoute>} />
           <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<KeycloakRoute><Profile setContributions={setContributions} contributions={contributions} profile={profile} setProfile={setProfile} /></KeycloakRoute>} />

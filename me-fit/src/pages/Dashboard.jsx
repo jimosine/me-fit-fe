@@ -12,7 +12,7 @@ import { storageDelete, storageSave } from "../utils/storage";
 
 
 
-const Dashboard = ({ goals, addGoals, setGoals }) => {
+const Dashboard = ({ goals, addGoals, setGoals, setProfile }) => {
 
 
     // const [goals, setGoals] = useState([]);
@@ -98,7 +98,7 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
 
         <div className="App">
             <DashboardHeader />
-            <GoalsList goals={goals} loading={loading} setLoading={setLoading} removeGoals={removeGoals} setGoals={setGoals} addGoals={addGoals} />
+            <GoalsList setProfile={setProfile} goals={goals} loading={loading} setLoading={setLoading} removeGoals={removeGoals} setGoals={setGoals} addGoals={addGoals} />
             <AddGoalButton goal={goals} handleShow={handleShow} updateGoals={addGoals} />
 
             {/* <AddGoalModal show={show} onHide={handleClose} /> */}

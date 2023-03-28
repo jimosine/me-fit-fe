@@ -7,12 +7,13 @@ import { storageDelete, storageRead, storageSave } from '../../utils/storage';
 import { deleteGoal, exercisesFromWorkouts, goalPostUpdate, workoutsFromPrograms } from '../../utils/api';
 import { FaCheckSquare, FaTimes } from 'react-icons/fa'
 
-const GoalItem = ({ goal, removeGoals, index }) => {
+const GoalItem = ({ goal, removeGoals, index, setProfile }) => {
 
     const [id, setId] = useState(0);
     const [workouts, setWorkouts] = useState([])
     const [exercises, setExercises] = useState([])
     const [workExer, setWorkExer] = useState([])
+    const [progress, setProgress] = useState(0)
 
     let programNames = storageRead('programs')
     const idsToFilter = goal.programsId.map(item => parseInt(item))
@@ -30,24 +31,32 @@ const GoalItem = ({ goal, removeGoals, index }) => {
     }
 
     const handleButtonClick = () => {
-        setWorkExer(workouts.map(item => exercises.filter(i => item.exercisesId.includes(i.id)).map(x => x.name)))
-        console.log(workExer);
+        // setWorkExer(workouts.map(item => exercises.filter(i => item.exercisesId.includes(i.id)).map(x => x.name)))
+        // console.log(workExer);
+        // const profileInfo = JSON.parse(localStorage.getItem("profileinfo"))
+        // profileInfo.completedGoals = [goal.id]
+        // console.log(profileInfo);
+        // setProfile(profileInfo)
+        localStorage.setItem('completed', [goal.id])
     };
 
     const handleCheckboxChange = (event) => {
         if (event.target.checked) {
-            setCheckedCount(checkedCount + 1);
+            setCheckedCount((prevCount) => prevCount + 1);
         } else {
-            setCheckedCount(checkedCount - 1);
+            setCheckedCount((prevCount) => prevCount - 1);
         }
-    }
+    };
 
-    let progress = 0
-    if (goal.type === "Program") {
-        progress = (checkedCount / exercises.length) * 100;
-    } else {
-        progress = 100
-    }
+    useEffect(() => {
+        if (progress === 100) {
+        }
+        setProgress((checkedCount / exercises.length) * 100);
+    }, [checkedCount, exercises.length]);
+
+    // let progress = 0
+
+
 
 
     useEffect(() => {
@@ -155,13 +164,13 @@ const GoalItem = ({ goal, removeGoals, index }) => {
                             </p>
                             <span><ProgressBar now={progress} label={`${progress}%`} /></span>
                             <div className='contribution-form-buttons'>
-                                <Button
+                                {progress === 100 ? <Button
                                     className="buttonEdit"
                                     variant="primary"
                                     onClick={handleButtonClick}
                                 >
-                                    Edit goal
-                                </Button>
+                                    Save progress
+                                </Button> : " "}
                                 <Button
                                     className="buttonRemove"
                                     variant="danger"
