@@ -8,11 +8,20 @@ const ContributionItem = ({ contributions, contribution, setContributions, index
 
     const [id, setId] = useState(0);
     const name = contribution.name
-    const type = contribution.Type.value.toLowerCase()
+    const type = contribution.Type
+
+    //SOMS IS IE UNDEFINED
+    if (type !== undefined) {
+        console.log(type.toLowerCase());
+    }
+    // const type = contribution.Type.value.toLowerCase()
 
     const [nameEdit, setNameEdit] = useState(contribution.name);
     const [descriptionEdit, setDescriptionEdit] = useState(contribution.description);
     const [muscleGroupEdit, setMuscleGroupEdit] = useState(contribution.musclegroup);
+    const [imgEdit, setImgEdit] = useState(contribution.imglink);
+    const [vidEdit, setVidEdit] = useState(contribution.vidlink);
+    const [repetitionsEdit, setRepititionsEdit] = useState(contribution.repetitions);
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -26,14 +35,15 @@ const ContributionItem = ({ contributions, contribution, setContributions, index
             name: nameEdit,
             description: descriptionEdit,
             musclegroup: muscleGroupEdit,
-            "vidlink": "vidlink",
-            "imglink": "imglink",
-            "repetitions": 10
+            "vidlink": vidEdit,
+            "imglink": imgEdit,
+            "repetitions": repetitionsEdit
         };
 
         console.log(updatedContribution);
 
-        fetch(`https://me-fit-nl.azurewebsites.net/${type}/${id}`, {
+        // fetch(`https://me-fit-nl.azurewebsites.net/${type}/${id}`, {
+        fetch(`https://me-fit-nl.azurewebsites.net/exercise/${id}`, {
             method: "PUT",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -62,7 +72,8 @@ const ContributionItem = ({ contributions, contribution, setContributions, index
 
     const removeContribution = () => {
         //UPDATE SERVER
-        fetch(`https://me-fit-nl.azurewebsites.net/${type}/${id}`, {
+        fetch(`https://me-fit-nl.azurewebsites.net/exercise/${id}`, {
+            // fetch(`https://me-fit-nl.azurewebsites.net/${type}/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -84,7 +95,8 @@ const ContributionItem = ({ contributions, contribution, setContributions, index
 
     //GET ID OF THE CONTRIBUTION
     useEffect(() => {
-        fetch(`https://me-fit-nl.azurewebsites.net/${type}/name/${name}`, {
+        fetch(`https://me-fit-nl.azurewebsites.net/exercise/name/${name}`, {
+            // fetch(`https://me-fit-nl.azurewebsites.net/${type}/name/${name}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -106,6 +118,9 @@ const ContributionItem = ({ contributions, contribution, setContributions, index
                     <input type="text" value={nameEdit} onChange={(e) => setNameEdit(e.target.value)} />
                     <input type="text" value={descriptionEdit} onChange={(e) => setDescriptionEdit(e.target.value)} />
                     <input type="text" value={muscleGroupEdit} onChange={(e) => setMuscleGroupEdit(e.target.value)} />
+                    <input type="text" value={imgEdit} onChange={(e) => setImgEdit(e.target.value)} />
+                    <input type="text" value={vidEdit} onChange={(e) => setVidEdit(e.target.value)} />
+                    {/* <input type="text" value={repetitionsEdit} onChange={(e) => setRepititionsEdit(e.target.value)} /> */}
                     <div className='contribution-form-buttons'>
                         <Button variant="primary" onClick={updateContribution}>
                             Edit goal
@@ -115,10 +130,14 @@ const ContributionItem = ({ contributions, contribution, setContributions, index
 
             {!isEditing &&
                 <>
+                    {console.log(contributions[index])}
+                    <li key="type">{type}</li>
                     <li key="name">{contributions[index].name}</li>
                     <li key="description">{contributions[index].description}</li>
                     <li key="musclegroup">{contributions[index].musclegroup}</li>
-                    <li key="id">{id}</li>
+                    <li key="reptitions">{contributions[index].repetitions}</li>
+                    <li key="img">{contributions[index].imglink}</li>
+                    <li key="vid">{contributions[index].vidlink}</li>
                     <div className='contribution-form-buttons'>
                         <Button className='contribution-form-button' variant="danger" onClick={removeContribution} >
                             Remove
