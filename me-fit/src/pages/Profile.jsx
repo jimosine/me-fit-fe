@@ -31,8 +31,26 @@ const Profile = ({ contributions, profile, setProfile, setContributions }) => {
     };
 
     useEffect(() => {
-        setProfile(storageRead('profile'))
-    }, [setProfile]);
+        const userId = sessionStorage.getItem('id');
+
+        fetch(`https://me-fit-nl.azurewebsites.net/profile/userid/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                localStorage.setItem('profileinfo', JSON.stringify(data))
+                setProfile(storageRead('profileinfo'))
+            })
+            .catch((error) => console.error(error));
+
+
+
+
+
+    }, []);
 
 
     return (
@@ -42,7 +60,7 @@ const Profile = ({ contributions, profile, setProfile, setContributions }) => {
             </div>
 
             {/* if profile not set, first set */}
-            {storageRead('profile') === null &&
+            {storageRead('profileinfo') === null &&
                 <>
                     <p>Please fill in your profile page first.</p>
 
@@ -51,7 +69,7 @@ const Profile = ({ contributions, profile, setProfile, setContributions }) => {
             }
 
 
-            {storageRead('profile') !== null &&
+            {storageRead('profileinfo') !== null &&
                 <Tabs
                     defaultActiveKey="info"
                     id="justify-tab-example"
@@ -86,7 +104,7 @@ const Profile = ({ contributions, profile, setProfile, setContributions }) => {
                     </Tab>}
 
                     {!isContributorRole() && <Tab eventKey="contributions" title="Contributions">
-                       Please email befit for a Contribution role
+                        Please email befit for a Contribution role
                     </Tab>}
 
 

@@ -11,6 +11,8 @@ function NavBar() {
   //Misschien ook nog setProfile([]) doen, maar lijkt goed te gaan
   const onCancel = () => {
     storageDelete('profile');
+    storageDelete('goals');
+    sessionStorage.removeItem("profile")
     keycloak.logout();
   };
 

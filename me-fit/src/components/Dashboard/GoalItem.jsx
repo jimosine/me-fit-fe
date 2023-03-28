@@ -14,28 +14,25 @@ const GoalItem = ({ goal, removeGoals, index }) => {
     const [exercises, setExercises] = useState([])
     const [workExer, setWorkExer] = useState([])
 
+    let programNames = storageRead('programs')
+    const idsToFilter = goal.programsId.map(item => parseInt(item))
+    programNames = programNames.filter(item => idsToFilter.includes(parseInt(item.id))).map(item => item.name)
+
+
     //PROGRESS PROCENT
     const [checkedCount, setCheckedCount] = useState(0);
 
     const handleRemove = () => {
         //haalt uit state & storage
         removeGoals(goal)
-
         //haalt uit de api
         deleteGoal(goal, setId)
     }
 
     const handleButtonClick = () => {
-
-        // console.log(exercises);
-        // console.log(workouts);
         setWorkExer(workouts.map(item => exercises.filter(i => item.exercisesId.includes(i.id)).map(x => x.name)))
         console.log(workExer);
-
     };
-
-
-
 
     const handleCheckboxChange = (event) => {
         if (event.target.checked) {
@@ -55,6 +52,8 @@ const GoalItem = ({ goal, removeGoals, index }) => {
 
     useEffect(() => {
 
+
+
         const fetchData = async () => {
             const ids = await workoutsFromPrograms(goal.programsId);
             setWorkouts(ids);
@@ -68,13 +67,7 @@ const GoalItem = ({ goal, removeGoals, index }) => {
             const workoutObjects = storageRead('workouts').filter(item => ids.includes(item.id));
             setWorkouts(workoutObjects);
 
-            // console.log(workouts)
-            // console.log(exercises)
-            // console.log(exerciseObjects)
-            // console.log(workoutObjects)
-
             setWorkExer(workouts.map(item => exercises.filter(i => item.exercisesId.includes(i.id)).map(x => x.name)))
-
 
         };
 
@@ -83,9 +76,9 @@ const GoalItem = ({ goal, removeGoals, index }) => {
 
 
 
-    if (workouts.length === 0 || exercises.length === 0) {
-        return <div>Loading...</div>;
-    }
+    // if (workouts.length === 0 || exercises.length === 0) {
+    //     return <div>Loading...</div>;
+    // }
 
     return (
 
@@ -120,9 +113,9 @@ const GoalItem = ({ goal, removeGoals, index }) => {
                             </p>
 
                             <ul style={{ listStyle: "none", paddingLeft: "0" }}>
-                                {goal.programsId.map(item => (
+                                {programNames.map(item => (
                                     <li style={{ display: "flex", alignItems: "center" }}>
-                                        <span style={{ marginLeft: "1.5rem", marginRight: "1rem", fontWeight: "bold" }}>{item.label}</span>
+                                        <span style={{ marginLeft: "1.5rem", marginRight: "1rem", fontWeight: "bold" }}>{item}</span>
                                         <Form.Check onChange={handleCheckboxChange} style={{ marginLeft: "0.5rem" }} />
                                     </li>
                                 ))}
