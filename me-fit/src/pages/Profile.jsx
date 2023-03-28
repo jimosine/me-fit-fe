@@ -85,6 +85,10 @@ const Profile = ({ contributions, profile, setProfile, setContributions }) => {
                         }
                     </Tab>}
 
+                    {!isContributorRole() && <Tab eventKey="contributions" title="Contributions">
+                       Please email befit for a Contribution role
+                    </Tab>}
+
 
                     <Tab eventKey="achievements" title="Achievements">
                         <ProfileAchievements />
