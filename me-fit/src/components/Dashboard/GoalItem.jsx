@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { storageDelete, storageRead, storageSave } from '../../utils/storage';
 import { deleteGoal, exercisesFromWorkouts, goalPostUpdate, workoutsFromPrograms } from '../../utils/api';
-
+import { FaCheckSquare, FaTimes } from 'react-icons/fa'
 
 const GoalItem = ({ goal, removeGoals, index }) => {
 
@@ -116,7 +116,7 @@ const GoalItem = ({ goal, removeGoals, index }) => {
                                 {programNames.map(item => (
                                     <li style={{ display: "flex", alignItems: "center" }}>
                                         <span style={{ marginLeft: "1.5rem", marginRight: "1rem", fontWeight: "bold" }}>{item}</span>
-                                        <Form.Check onChange={handleCheckboxChange} style={{ marginLeft: "0.5rem" }} />
+                                        {progress === 100 ? <FaCheckSquare style={{ color: "green" }} /> : <FaTimes style={{ color: "red" }} />}
                                     </li>
                                 ))}
                             </ul>
@@ -131,7 +131,7 @@ const GoalItem = ({ goal, removeGoals, index }) => {
                                 {workouts.map(item => (
                                     <li style={{ display: "flex", alignItems: "center" }}>
                                         <span style={{ marginLeft: "1.5rem", marginRight: "1rem", fontWeight: "bold" }}>{item.name}</span>
-                                        <Form.Check onChange={handleCheckboxChange} style={{ marginLeft: "0.5rem" }} />
+                                        {progress === 100 ? <FaCheckSquare style={{ color: "green" }} /> : <FaTimes style={{ color: "red" }} />}
                                     </li>
                                 ))}
                             </ul>
