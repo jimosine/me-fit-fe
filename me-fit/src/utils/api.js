@@ -13,7 +13,7 @@ export const goalPostUpdate = async (goal, setId, id) => {
         // console.log(goal.programsId);
 
         if (goal.type === 'Program') {
-            const ids = goal.programsId.map(item => item.value);
+            const ids = goal.programsId
             await fetch(`https://me-fit-nl.azurewebsites.net/goal/${data.id}/programs`, {
                 method: "PUT",
                 headers: {
@@ -75,19 +75,19 @@ export const workoutsFromPrograms = async (programIds) => {
         return false
     }
 
+    //const ids = programIds.map(item => item.value);
+    const ids = programIds
 
-    const ids = programIds.map(item => item.value);
-    // const ids = programIds
     const workoutIds = [];
 
-
-    const fetchPromises = ids.map(idx => {
-        return fetch(`https://me-fit-nl.azurewebsites.net/program/${idx}/workouts`, {
+    const fetchPromises = ids.map(async idx => {
+        const response = await fetch(`https://me-fit-nl.azurewebsites.net/program/${idx}/workouts`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
             },
-        }).then(response => response.json());
+        });
+        return await response.json();
     });
 
     const responses = await Promise.all(fetchPromises);
@@ -127,6 +127,24 @@ export const exercisesFromWorkouts = async (workoutIds) => {
 
     return exerciseIds;
 };
+
+export const storeProfileSession = async () => {
+    const userId = sessionStorage.getItem('id');
+
+    fetch(`https://me-fit-nl.azurewebsites.net/profile/userid/${userId}`, {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            sessionStorage.setItem('profile', data.id);
+        })
+        .catch((error) => console.error(error));
+
+}
+
 
 
     // try {

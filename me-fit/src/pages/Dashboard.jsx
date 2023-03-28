@@ -14,7 +14,6 @@ import { storageDelete, storageSave } from "../utils/storage";
 
 const Dashboard = ({ goals, addGoals, setGoals }) => {
 
-    console.log(sessionStorage.getItem("id"))
 
     // const [goals, setGoals] = useState([]);
     const handleShow = () => setShow(true);
@@ -25,16 +24,22 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
     const [loading, setLoading] = useState(false)
 
     const handleFormSubmit = (data) => {
-        // updateContributions([data])
+
+        console.log(data);
+
         if (data.Type === "Workout") {
             data.programsId = []
         } else if (data.Type === "Program") {
             data.workoutsId = []
+
+            data.programsId = data.programsId.map(item => item.value)
+
         }
 
-        // Add UserID & isCompleted to the form data
+        data.programsId = data.programsId.map(item => item.value)
         //SET DYNAMICALY
-        data.profile = 3
+        data.profile = parseInt(sessionStorage.getItem("profile"))
+        // data.profile = sessionStorage.getItem("profile")
 
         console.log(data);
         // console.log(data.programsId.map(item => item.value))
@@ -47,10 +52,8 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
         handleClose()
 
         postGoal(data)
-        console.log("DIT IS DE ID");
-        console.log(id);
-
         addGoals([data])
+        // setGoals(data)
     }
 
 

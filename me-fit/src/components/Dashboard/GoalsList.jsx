@@ -2,9 +2,11 @@ import GoalItem from './GoalItem';
 import Accordion from 'react-bootstrap/Accordion';
 import { useEffect, useState } from 'react';
 import { storageRead, storageSave } from '../../utils/storage';
+import { storeProfileSession } from '../../utils/api';
 
 const GoalsList = ({ goals, removeGoals, setGoals, loading, setLoading }) => {
     useEffect(() => {
+        storeProfileSession()
         if (storageRead('goals') === null) {
             setLoading(true);
             const fetchData = async () => {
@@ -15,14 +17,8 @@ const GoalsList = ({ goals, removeGoals, setGoals, loading, setLoading }) => {
                 ])
                     .then(([response]) => Promise.all([response.json()]))
                     .then(async ([data]) => {
-                        // setPrograms(dataPrograms)
-                        // console.log(data);
-                        // console.log(sessionStorage.getItem("id"))
-
                         storageSave('goals', data);
                         setGoals(data);
-                        // addGoals(storageRead('goals'))
-                        console.log('is nog leeg');
                         await setLoading(false);
                     });
             };
@@ -34,8 +30,8 @@ const GoalsList = ({ goals, removeGoals, setGoals, loading, setLoading }) => {
     }, []);
 
     //Map over the goals array and create GoalItem components for each entry (goal)
-    // const goalsItems = goals.filter(goal => goal.profile === 3).map((goal, index) => <GoalItem key={goal.Name + '-' + index} index={index} goal={goal} removeGoals={removeGoals} />)
-    const goalsItems = goals.filter(goal => goal.profile === 3).map((goal, index) => (
+    const profileId = parseInt(sessionStorage.getItem("profile"))
+    const goalsItems = goals.filter(goal => goal.profile === profileId).map((goal, index) => (
         <GoalItem
             key={goal.Name + '-' + index}
             index={index}
