@@ -29,6 +29,9 @@ function App() {
     setContributions(contributions.concat(contribution));
   }
 
+  function removeContribution(name) {
+    setContributions(contributions.filter(item => item.name !== name))
+  }
 
   return (
     <div className='App'>
@@ -40,9 +43,9 @@ function App() {
           </KeycloakRoute>
           } />
           <Route path='/dashboard' element={<KeycloakRoute><Dashboard goals={goals} setGoals={setGoals} addGoals={addGoals} /></KeycloakRoute>} />
-          <Route path='/library' element={<KeycloakRoute><Library updateContributions={addContributions} /></KeycloakRoute>} />
+          <Route path='/library' element={<KeycloakRoute><Library updateContributions={addContributions} setContributions={setContributions} contributions={contributions} /></KeycloakRoute>} />
           <Route path='/login' element={<Login />} />
-          <Route path='/profile' element={<KeycloakRoute><Profile contributions={contributions} profile={profile} setProfile={setProfile} /></KeycloakRoute>} />
+          <Route path='/profile' element={<KeycloakRoute><Profile setContributions={setContributions} contributions={contributions} profile={profile} setProfile={setProfile} /></KeycloakRoute>} />
           <Route path='*' element={
             <>
               <h1>There's nothing here 👻</h1>

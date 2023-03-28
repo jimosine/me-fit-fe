@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import ProfileAchievements from "../components/Profile/ProfileAchievments";
 import { storageRead, storageSave } from "../utils/storage";
-import {isContributorRole} from "../utils/user"
+import { isContributorRole } from "../utils/user"
 
 const Profile = ({ contributions, profile, setProfile, setContributions }) => {
     const handleShow = () => setShow(true);
