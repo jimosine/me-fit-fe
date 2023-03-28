@@ -14,6 +14,8 @@ import { storageDelete, storageSave } from "../utils/storage";
 
 const Dashboard = ({ goals, addGoals, setGoals }) => {
 
+    console.log(sessionStorage.getItem("id"))
+
     // const [goals, setGoals] = useState([]);
     const handleShow = () => setShow(true);
     const [show, setShow] = useState(false);

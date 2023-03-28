@@ -12,6 +12,7 @@ const GoalItem = ({ goal, removeGoals, index }) => {
     const [id, setId] = useState(0);
     const [workouts, setWorkouts] = useState([])
     const [exercises, setExercises] = useState([])
+    const [workExer, setWorkExer] = useState([])
 
     //PROGRESS PROCENT
     const [checkedCount, setCheckedCount] = useState(0);
@@ -26,23 +27,11 @@ const GoalItem = ({ goal, removeGoals, index }) => {
 
     const handleButtonClick = () => {
 
-        console.log(exercises);
-        console.log(workouts);
+        // console.log(exercises);
+        // console.log(workouts);
+        setWorkExer(workouts.map(item => exercises.filter(i => item.exercisesId.includes(i.id)).map(x => x.name)))
+        console.log(workExer);
 
-        // workoutsFromPrograms(goal.programsId).then(ids => {
-        //     setWorkouts(ids)
-        //     exercisesFromWorkouts(ids).then(i => {
-        //         setExercises(i)
-
-        //     })
-        // });
-
-        // const exerciseObjects = storageRead('exercises').filter(item => exercises.includes(item.id))
-        // setExercises(exerciseObjects)
-
-        // const workoutObjects = storageRead('workouts').filter(item => workouts.includes(item.id))
-        // setExercises(workoutObjects)
-        // console.log(workoutObjects)
     };
 
 
@@ -58,16 +47,14 @@ const GoalItem = ({ goal, removeGoals, index }) => {
 
     let progress = 0
     if (goal.type === "Program") {
-        // progress = 33
         progress = (checkedCount / exercises.length) * 100;
     } else {
         progress = 100
     }
 
-    // console.log(goal.programsId);
-
 
     useEffect(() => {
+
         const fetchData = async () => {
             const ids = await workoutsFromPrograms(goal.programsId);
             setWorkouts(ids);
@@ -81,10 +68,14 @@ const GoalItem = ({ goal, removeGoals, index }) => {
             const workoutObjects = storageRead('workouts').filter(item => ids.includes(item.id));
             setWorkouts(workoutObjects);
 
-            console.log(workouts);
-            console.log(exercises);
-            console.log(exerciseObjects);
-            console.log(workoutObjects);
+            // console.log(workouts)
+            // console.log(exercises)
+            // console.log(exerciseObjects)
+            // console.log(workoutObjects)
+
+            setWorkExer(workouts.map(item => exercises.filter(i => item.exercisesId.includes(i.id)).map(x => x.name)))
+
+
         };
 
         fetchData();
@@ -137,6 +128,8 @@ const GoalItem = ({ goal, removeGoals, index }) => {
                                 ))}
                             </ul>
 
+
+
                             <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                 <span style={{ fontWeight: "bold" }}>Workouts:</span>
                             </p>
@@ -162,6 +155,7 @@ const GoalItem = ({ goal, removeGoals, index }) => {
                                     </li>
                                 ))}
                             </ul>
+
 
                             <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                 <span style={{ fontWeight: "bold" }}>Progress:</span>

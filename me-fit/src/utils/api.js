@@ -75,8 +75,11 @@ export const workoutsFromPrograms = async (programIds) => {
         return false
     }
 
+
     const ids = programIds.map(item => item.value);
+    // const ids = programIds
     const workoutIds = [];
+
 
     const fetchPromises = ids.map(idx => {
         return fetch(`https://me-fit-nl.azurewebsites.net/program/${idx}/workouts`, {

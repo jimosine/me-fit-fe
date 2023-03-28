@@ -15,7 +15,10 @@ const GoalsList = ({ goals, removeGoals, setGoals, loading, setLoading }) => {
                 ])
                     .then(([response]) => Promise.all([response.json()]))
                     .then(async ([data]) => {
-                        // setPrograms(dataPrograms);
+                        // setPrograms(dataPrograms)
+                        // console.log(data);
+                        // console.log(sessionStorage.getItem("id"))
+
                         storageSave('goals', data);
                         setGoals(data);
                         // addGoals(storageRead('goals'))
