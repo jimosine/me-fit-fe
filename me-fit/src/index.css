@@ -1,3 +1,9 @@
+.cardStyle {
+  width: 18em !important;
+  border: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
 .ExerciseItem-img {
   height: 250px;
   /* max-height: 350px; */
@@ -62,7 +68,8 @@
   gap: 10px;
   width: 100%;
   height: auto;
-  margin: 2em;
+  margin-bottom: 2em !important;
+  margin-top: 2em !important;
 }
 
 .accordion-button {
@@ -188,8 +195,24 @@ body {
 h1 {
   font-family: 'Yaldevi', sans-serif !important;
   font-weight: 700 !important;
-  letter-spacing: 1;
-  font-size: 1.5em;
+  letter-spacing: 1px !important;
+  font-size: 1.5em !important;
+}
+
+h4 {
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  font-size: 1.3em !important;
+}
+
+.card-text {
+  font-family: 'Yaldevi', sans-serif !important;
+  letter-spacing: 1px !important;
+  font-size: 0.9em !important;
+}
+
+.modal-title {
+  font-weight: 700 !important;
 }
 
 code {
@@ -216,4 +239,34 @@ code {
 .buttonRemove {
   background-color: #de6b48 !important;
   border: none !important;
+}
+
+.libarybutton {
+  background-color: #cfee9e !important;
+  border: none !important;
+  color: black !important;
+}
+
+.libarybutton:hover {
+  background-color: #cfee9ea7 !important;
+}
+
+.modal-body img {
+  object-fit: cover;
+}
+
+.achievements {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.achievements-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.achievement-img {
+  width: 33% !important;
 }
