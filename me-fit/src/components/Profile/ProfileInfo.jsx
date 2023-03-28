@@ -4,13 +4,14 @@ import { Row } from 'react-bootstrap';
 
 const ProfileInfo = ({ profile }) => {
 
+
     if (profile.goalsId === undefined) {
         profile.goalsId = []
     }
-
-    if (profile.completedGoals === null) {
-        profile.completedGoals = []
-    }
+    profile.completedGoals = []
+    // if (profile.completedGoals === undefined) {
+    //     profile.completedGoals = []
+    // }
 
     return (
         <Card style={{ width: '30rem' }}>
