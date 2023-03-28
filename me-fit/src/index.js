@@ -8,7 +8,9 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 // Display a loading screen when connecting to Keycloak
-root.render(<h1>Connecting to keycloak</h1>)
+root.render(<div className="loading-container"><div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Loading...</span>
+</div></div>)
 
 initialize()
     .then(() => { // If No Keycloak Error occurred - Display the App
