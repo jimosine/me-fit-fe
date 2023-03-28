@@ -15,7 +15,7 @@ function Login() {
             checkProfile(keycloak.subject.toString())
             navigate("/dashboard")
         }
-    },[])
+    },)
 
     const createHeaders = () => {
         return {
@@ -54,6 +54,7 @@ function Login() {
 
 
     return (
+        <div className="login-box">
             <div id="carouselExampleCaptions " className="carousel slide">
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active"
@@ -124,6 +125,7 @@ function Login() {
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
+        </div>
     );
 };
 
