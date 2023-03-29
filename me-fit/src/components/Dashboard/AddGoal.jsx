@@ -22,6 +22,7 @@ const AddGoal = ({ goals, updateGoals }) => {
 
         // Add UserID & isCompleted to the form data
         data.UserID = 1
+        data.profileId = 1
         data.completed = false
 
         // Save the form data and update the form submission status
@@ -30,6 +31,7 @@ const AddGoal = ({ goals, updateGoals }) => {
         updateGoals([data])
         setFormSubmitted(true);
         setShowForm(false);
+        console.log(data);
     };
 
     // Define a function to handle form cancellation

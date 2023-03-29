@@ -1,3 +1,9 @@
+.cardStyle {
+  width: 18em !important;
+  border: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
 .ExerciseItem-img {
   height: 250px;
   /* max-height: 350px; */
@@ -11,7 +17,6 @@
   width: 350px;
   /* max-width: 350px; */
 }
-
 
 .progress-bar {
   width: 20%;
@@ -40,74 +45,101 @@
   margin: 10px;
   margin-left: 20px;
   width: 91.5%;
-
 }
 
 .contribution-form-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
+  gap: 20px;
 }
-
 
 .contribution-form-button {
   padding: 10px;
   margin: 10px;
 }
 
-
 .dash-header {
-  box-sizing: border-box;
-  width: 100%;
-  height: 150px;
   display: flex;
   justify-content: center;
-  align-items: baseline;
-  padding: 1em;
-  margin-bottom: 2em;
-  background-color: rgb(192, 45, 26);
-  color: #fff;
-  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 2em !important;
+  margin-top: 2em !important;
 }
 
 .accordion-button {
-  background: linear-gradient(to right, #718DB8, #92A8C8);
-  color: #fff important;
+  background-color: #cfee9e !important;
+  font-family: 'Yaldevi', sans-serif !important;
+  font-size: 1em;
+  letter-spacing: 1px;
+}
+
+.accordion-button::after {
+  color: #fff !important;
+}
+
+.accordion-body p {
+  font-family: 'Yaldevi', sans-serif !important;
 }
 
 .navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 10px;
+  margin-left: 10px;
+  font-weight: 700;
+  font-size: 0.9em;
+}
+
+.navbar-brand svg {
+  color: #cfee9e;
+}
+
+.navbar-brand p {
+  display: contents;
+  font-size: 2rem;
+  color: #cfee9e;
 }
 
 .nav-links {
   text-decoration: none;
-  color: white;
+  color: #fcfcfc;
+  font-size: 1em;
+  font-weight: 700;
 }
 
 .nav-links:hover {
-  color: black;
+  color: #cfee9e;
 }
 
 .navbar-dropdown-item a {
-  background-color: #718DB8;
+  background-color: #458789;
   text-align: center;
   color: white !important;
   border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9em;
 }
 
 .navbar-dropdown-item {
-  background-color: #718DB8;
+  background-color: #718db8;
   text-align: center;
   color: white !important;
   border-radius: 8px;
 }
 
 .goal-item {
-  padding: 10px
+  padding: 10px;
 }
 
 .add-goal {
-  padding: 50px
+  padding: 50px;
 }
 
 .add-goal-button {
@@ -121,13 +153,15 @@
 }
 
 .navbar {
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(to right, #718DB8, #92A8C8);
+  font-family: 'Yaldevi', sans-serif;
+  letter-spacing: 1px;
+  background: #458789;
+  /* background: linear-gradient(to right, #718DB8, #92A8C8); */
 }
 
 .library-option {
   border: solid black;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   padding: 10px;
   margin: 10px;
 }
@@ -142,22 +176,97 @@
 .list-items {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .list-item {
-  padding: 20px
+  padding: 20px;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: 'Yaldevi' -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+  font-family: 'Yaldevi', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  font-size: 1.5em !important;
+}
+
+h4 {
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  font-size: 1.3em !important;
+}
+
+.card-text {
+  font-family: 'Yaldevi', sans-serif !important;
+  letter-spacing: 1px !important;
+  font-size: 0.9em !important;
+}
+
+.modal-title {
+  font-weight: 700 !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#collasible-nav-dropdown {
+  color: white;
+  margin-right: 10px;
+}
+
+.btn {
+  font-family: 'Yaldevi', sans-serif !important;
+  font-size: 0.9em !important;
+  padding: 0.8em !important;
+}
+
+.buttonEdit {
+  background-color: #5eb1bf !important;
+  border: none !important;
+}
+
+.buttonRemove {
+  background-color: #de6b48 !important;
+  border: none !important;
+}
+
+.libarybutton {
+  background-color: #cfee9e !important;
+  border: none !important;
+  color: black !important;
+}
+
+.libarybutton:hover {
+  background-color: #cfee9ea7 !important;
+}
+
+.modal-body img {
+  object-fit: cover;
+}
+
+.achievements {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.achievements-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.achievement-img {
+  width: 33% !important;
 }

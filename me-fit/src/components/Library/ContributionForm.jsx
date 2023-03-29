@@ -263,7 +263,7 @@ const ContributionForm = ({ onSubmit }) => {
                         className="contribution-form-field-name"
                         type="number"
                         placeholder="Repetitions"
-                        {...register("repetitions", { required: true })} />
+                        {...register("repetitions")} />
 
                     <Controller
                         control={control}

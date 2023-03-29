@@ -8,11 +8,13 @@ import Login from "./pages/Login"
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { storageSave } from './utils/storage';
 import KeycloakRoute from "./routes/KeycloakRoute";
+import { storeProfileSession } from './utils/api';
 
 function App() {
+
 
   const [contributions, setContributions] = useState([]);
 
@@ -29,6 +31,9 @@ function App() {
     setContributions(contributions.concat(contribution));
   }
 
+  function removeContribution(name) {
+    setContributions(contributions.filter(item => item.name !== name))
+  }
 
   return (
     <div className='App'>
@@ -36,13 +41,13 @@ function App() {
         <NavBar />
         <Routes>
           <Route path='/' element={<KeycloakRoute>
-            <Dashboard goals={goals} setGoals={setGoals} addGoals={addGoals} />
+            <Dashboard goals={goals} setGoals={setGoals} addGoals={addGoals} setProfile={setProfile} />
           </KeycloakRoute>
           } />
-          <Route path='/dashboard' element={<KeycloakRoute><Dashboard goals={goals} setGoals={setGoals} addGoals={addGoals} /></KeycloakRoute>} />
-          <Route path='/library' element={<KeycloakRoute><Library updateContributions={addContributions} /></KeycloakRoute>} />
+          <Route path='/dashboard' element={<KeycloakRoute><Dashboard goals={goals} setProfile={setProfile} setGoals={setGoals} addGoals={addGoals} /></KeycloakRoute>} />
+          <Route path='/library' element={<KeycloakRoute><Library updateContributions={addContributions} setContributions={setContributions} contributions={contributions} /></KeycloakRoute>} />
           <Route path='/login' element={<Login />} />
-          <Route path='/profile' element={<KeycloakRoute><Profile contributions={contributions} profile={profile} setProfile={setProfile} /></KeycloakRoute>} />
+          <Route path='/profile' element={<KeycloakRoute><Profile setContributions={setContributions} contributions={contributions} profile={profile} setProfile={setProfile} /></KeycloakRoute>} />
           <Route path='*' element={
             <>
               <h1>There's nothing here 👻</h1>

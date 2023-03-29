@@ -12,7 +12,10 @@ import { storageDelete, storageSave } from "../utils/storage";
 
 
 
-const Dashboard = ({ goals, addGoals, setGoals }) => {
+const Dashboard = ({ goals, addGoals, setGoals, setProfile }) => {
+
+    localStorage.setItem('contributions', JSON.stringify(0))
+
 
     // const [goals, setGoals] = useState([]);
     const handleShow = () => setShow(true);
@@ -23,15 +26,22 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
     const [loading, setLoading] = useState(false)
 
     const handleFormSubmit = (data) => {
-        // updateContributions([data])
+
+        console.log(data);
+
         if (data.Type === "Workout") {
             data.programsId = []
         } else if (data.Type === "Program") {
             data.workoutsId = []
+
+            data.programsId = data.programsId.map(item => item.value)
+
         }
 
-        // Add UserID & isCompleted to the form data
-        data.profile = 6
+        data.programsId = data.programsId.map(item => item.value)
+        //SET DYNAMICALY
+        data.profile = parseInt(sessionStorage.getItem("profile"))
+        // data.profile = sessionStorage.getItem("profile")
 
         console.log(data);
         // console.log(data.programsId.map(item => item.value))
@@ -44,21 +54,19 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
         handleClose()
 
         postGoal(data)
-        console.log("DIT IS DE ID");
-        console.log(id);
-
         addGoals([data])
+        // setGoals(data)
     }
 
 
     //Function passed down to remove a goal by setting the state
     function removeGoals(goal) {
         //state
-        setGoals(goals.filter(item => item.name != goal.name));
+        setGoals(goals.filter(item => item.name !== goal.name));
 
         //en storage
         storageDelete('goals')
-        storageSave('goals', goals.filter(item => item.name != goal.name))
+        storageSave('goals', goals.filter(item => item.name !== goal.name))
     }
 
     const postGoal = async (data) => {
@@ -70,7 +78,8 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
                     name: data.name,
                     type: data.type,
                     enddate: data.enddate,
-                    profileId: 6,
+                    //VERANDEREN NAAR PROFILE ID UIT DE STORAGE HALEN
+                    profileId: 3,
                 }),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -91,7 +100,7 @@ const Dashboard = ({ goals, addGoals, setGoals }) => {
 
         <div className="App">
             <DashboardHeader />
-            <GoalsList goals={goals} loading={loading} setLoading={setLoading} removeGoals={removeGoals} setGoals={setGoals} addGoals={addGoals} />
+            <GoalsList setProfile={setProfile} goals={goals} loading={loading} setLoading={setLoading} removeGoals={removeGoals} setGoals={setGoals} addGoals={addGoals} />
             <AddGoalButton goal={goals} handleShow={handleShow} updateGoals={addGoals} />
 
             {/* <AddGoalModal show={show} onHide={handleClose} /> */}
