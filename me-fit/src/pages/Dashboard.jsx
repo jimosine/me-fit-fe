@@ -14,6 +14,8 @@ import { storageDelete, storageSave } from "../utils/storage";
 
 const Dashboard = ({ goals, addGoals, setGoals, setProfile }) => {
 
+    localStorage.setItem('contributions', JSON.stringify(0))
+
 
     // const [goals, setGoals] = useState([]);
     const handleShow = () => setShow(true);

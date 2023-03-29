@@ -5,6 +5,7 @@ import achievement4 from '../../images/achievement4.png';
 import achievement5 from '../../images/achievement5.png';
 import achievement6 from '../../images/achievement6.png';
 import achieves2complete from '../../images/achieves2complete.png';
+import achieves4complete from '../../images/achieves4complete.png';
 
 const ProfileAchievements = () => {
 
@@ -36,11 +37,16 @@ const ProfileAchievements = () => {
           src={achievement3}
           alt="achievement1"
         ></img>
-        <img
+        {(JSON.parse(localStorage.getItem('contributions')) === 1) ? <img
+          className="achievement-img"
+          src={achieves4complete}
+          alt="achievement1"
+        ></img> : <img
           className="achievement-img"
           src={achievement4}
           alt="achievement1"
-        ></img>
+        ></img>}
+
         <img
           className="achievement-img"
           src={achievement5}

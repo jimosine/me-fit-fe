@@ -39,10 +39,10 @@ const GoalItem = ({ goal, removeGoals, index, setProfile }) => {
         // setProfile(profileInfo)
         if (localStorage.getItem('completed') === null) {
             localStorage.setItem('completed', JSON.stringify([goal.id]))
-            //handleRemove()
+            handleRemove()
         } else {
             localStorage.setItem('completed', JSON.stringify(JSON.parse(localStorage.getItem('completed')).concat([goal.id])))
-            //handleRemove()
+            handleRemove()
         }
 
     };

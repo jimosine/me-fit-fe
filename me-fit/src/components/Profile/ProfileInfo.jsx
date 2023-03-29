@@ -4,16 +4,12 @@ import { Row } from 'react-bootstrap';
 
 const ProfileInfo = ({ profile }) => {
 
-    console.log("IN PROFILE");
-    console.log(profile);
-
     if (profile.goalsId === undefined) {
         profile.goalsId = []
     }
 
     if (localStorage.getItem('completed') !== null) {
         profile.completedGoals = JSON.parse(localStorage.getItem('completed'))
-        console.log(profile.completedGoals);
     }
     else if (profile.completedGoals === null) {
         profile.completedGoals = []
@@ -23,6 +19,12 @@ const ProfileInfo = ({ profile }) => {
     }
     else if (profile.completedGoals.length <= 1) {
         profile.completedGoals = []
+    }
+
+    let extraPoints = 0
+    if (JSON.parse(localStorage.getItem('contributions')) === 1) {
+
+        extraPoints = 150
     }
 
 
@@ -39,7 +41,7 @@ const ProfileInfo = ({ profile }) => {
                     <ListGroup.Item>Last Name:  <span className='text-muted'>{profile.lastname}</span></ListGroup.Item>
                     <ListGroup.Item>Current amount of goals:  <span className='text-muted'>{profile.goalsId.length}</span></ListGroup.Item>
                     <ListGroup.Item>Completed goals:  <span className='text-muted'>{profile.completedGoals.length}</span></ListGroup.Item>
-                    <ListGroup.Item>Achievement points:  <span className='text-muted'>{profile.completedGoals.length * 150}</span></ListGroup.Item>
+                    <ListGroup.Item>Achievement points:  <span className='text-muted'>{profile.completedGoals.length * 150 + extraPoints}</span></ListGroup.Item>
                 </Row>
             </ListGroup>
         </Card>
