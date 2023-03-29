@@ -23,7 +23,7 @@ const Library = ({ setContributions, contributions, updateContributions }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [selectedButton, setSelectedButton] = useState('Exercises');
+    const [selectedButton, setSelectedButton] = useState('Workouts');
 
     // Define a function to handle button clicks
     const handleButtonClick = (button) => {

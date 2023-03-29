@@ -56,6 +56,7 @@ const ContributionItem = ({ contributions, contribution, setContributions, index
         updatedContribution.Type = type
         contributions[index] = updatedContribution
         setContributions(contributions)
+        localStorage.setItem('contributions', JSON.stringify(1))
     };
 
     const removeContribution = () => {

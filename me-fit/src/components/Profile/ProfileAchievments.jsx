@@ -4,8 +4,13 @@ import achievement3 from '../../images/achievement3.png';
 import achievement4 from '../../images/achievement4.png';
 import achievement5 from '../../images/achievement5.png';
 import achievement6 from '../../images/achievement6.png';
+import achieves2complete from '../../images/achieves2complete.png';
+import achieves4complete from '../../images/achieves4complete.png';
 
 const ProfileAchievements = () => {
+
+
+
   return (
     <div className="achievements">
       <div>
@@ -17,21 +22,31 @@ const ProfileAchievements = () => {
           src={achievement1}
           alt="achievement1"
         ></img>
-        <img
+        {(localStorage.getItem('completed') !== null) ? <img
+          className="achievement-img"
+          src={achieves2complete}
+          alt="achievement1"
+        ></img> : <img
           className="achievement-img"
           src={achievement2}
           alt="achievement1"
-        ></img>
+        ></img>}
+
         <img
           className="achievement-img"
           src={achievement3}
           alt="achievement1"
         ></img>
-        <img
+        {(JSON.parse(localStorage.getItem('contributions')) === 1) ? <img
+          className="achievement-img"
+          src={achieves4complete}
+          alt="achievement1"
+        ></img> : <img
           className="achievement-img"
           src={achievement4}
           alt="achievement1"
-        ></img>
+        ></img>}
+
         <img
           className="achievement-img"
           src={achievement5}

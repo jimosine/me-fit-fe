@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { storageRead, storageSave } from '../../utils/storage';
 import { storeProfileSession } from '../../utils/api';
 
-const GoalsList = ({ goals, removeGoals, setGoals, loading, setLoading }) => {
+const GoalsList = ({ goals, removeGoals, setGoals, loading, setLoading, setProfile }) => {
     useEffect(() => {
         storeProfileSession()
         if (storageRead('goals') === null) {
@@ -33,6 +33,7 @@ const GoalsList = ({ goals, removeGoals, setGoals, loading, setLoading }) => {
     const profileId = parseInt(sessionStorage.getItem("profile"))
     const goalsItems = goals.filter(goal => goal.profile === profileId).map((goal, index) => (
         <GoalItem
+            setProfile={setProfile}
             key={goal.Name + '-' + index}
             index={index}
             goal={goal}
