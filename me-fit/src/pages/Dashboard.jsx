@@ -79,7 +79,7 @@ const Dashboard = ({ goals, addGoals, setGoals, setProfile }) => {
                     type: data.type,
                     enddate: data.enddate,
                     //VERANDEREN NAAR PROFILE ID UIT DE STORAGE HALEN
-                    profileId: 3,
+                    profileId: parseInt(sessionStorage.getItem("profile")),
                 }),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
