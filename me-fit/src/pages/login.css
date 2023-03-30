@@ -1,18 +1,51 @@
-.login-box{
-    background-image: url("/public/pexels-andrea-piacquadio-3757954.jpg");
-    position: absolute;
-    display: flex;
-    margin: 0 auto;
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30rem;
+.inlog-wrapper {
+  background: url('/public/pexels-andrea-piacquadio-3757954.jpg');
+  background-position: center;
 }
 
-
-.background-img{
-    object-fit: cover;
-    opacity: 0.8;
-    height: 50rem;
-    width: 100%;
+.buttonwrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 1em;
 }
+
+.inlog-page {
+  display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50rem;
+}
+
+.cardstyle {
+  width: 30em !important;
+  height: 15em !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  border: none !important;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonLogin {
+  background-color: #458789 !important;
+  border: none !important;
+  width: 10em;
+}
+
+.buttonEdit {
+  background-color: #5eb1bf !important;
+  border: none !important;
+  width: 10em;
+}
+/* .login-box {
+  display: flex;
+  margin: 0 auto;
+  width: 30rem;
+} */
