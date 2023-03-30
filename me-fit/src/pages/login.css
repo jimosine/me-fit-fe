@@ -1,4 +1,18 @@
 .login-box{
-    position: relative;
+    background-image: url("/public/pexels-andrea-piacquadio-3757954.jpg");
+    position: absolute;
+    display: flex;
+    margin: 0 auto;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30rem;
+}
+
+
+.background-img{
+    object-fit: cover;
+    opacity: 0.8;
     height: 50rem;
+    width: 100%;
 }
