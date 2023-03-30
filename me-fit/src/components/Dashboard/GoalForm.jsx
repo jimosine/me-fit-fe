@@ -1,7 +1,7 @@
 import { useForm, Controller } from 'react-hook-form';
 import Select from 'react-select';
 import { storageRead } from '../../utils/storage';
-
+import { Button } from 'react-bootstrap';
 
 const GoalForm = ({ onSubmit, onCancel }) => {
     // Initialize form using useForm hook
@@ -13,6 +13,12 @@ const GoalForm = ({ onSubmit, onCancel }) => {
     } = useForm({
         defaultValues: {}
     });
+
+    const typeOptions = [
+        { value: "Program", label: "Program" },
+        { value: "Workout", label: "Workout" }
+    ]
+
 
     const programOptions = storageRead('programs').map(item => ({
         value: item.id,
@@ -34,22 +40,46 @@ const GoalForm = ({ onSubmit, onCancel }) => {
 
 
     return (
+
         <form onSubmit={handleSubmit(onSubmit)}>
             {/* Input field for goal name */}
-            <input type="text" placeholder="Name" {...register("name", { required: true, maxLength: 80 })} />
+            {/* <input type="text" placeholder="Name" {...register("name", { required: true, maxLength: 80 })} /> */}
+            <input
+                className="contribution-form-field-name"
+                type="text"
+                placeholder="Name..."
+                {...register("Name", { required: true, maxLength: 80 })}
+            />
 
             {/* Input field for goal end date */}
-            <input type="date" placeholder="Enddate" {...register("enddate", { required: true, maxLength: 100 })} />
+            <input type="date" className="contribution-form-field-name" placeholder="Enddate" {...register("enddate", { required: true, maxLength: 100 })} />
 
+            <Controller
+                control={control}
+                name="type"
+                render={({
+                    field: { onChange, onBlur, value, name, ref },
+                }) => (
+                    <Select className="contribution-form-field"
+                        options={typeOptions}
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        value={value}
+                        name={name}
+                        ref={ref}
+                        placeholder={"Goal type..."}
+                    />
+                )}
+            />
             {/* Select field for goal type */}
-            <select {...register("type", { required: true })}>
+            {/* <select {...register("type", { required: true })}>
                 <option value="">Select a goal</option>
                 <option value="Program">Program</option>
                 <option value="Workout">Workout</option>
-            </select>
+            </select> */}
 
             {/* Conditional rendering for Program options */}
-            {type === 'Program' &&
+            {type !== undefined && type.value === 'Program' &&
                 <>
                     <Controller
                         control={control}
@@ -57,7 +87,7 @@ const GoalForm = ({ onSubmit, onCancel }) => {
                         render={({
                             field: { onChange, onBlur, value, name, ref },
                         }) => (
-                            <Select
+                            <Select className="contribution-form-field"
                                 options={programOptions}
                                 onChange={onChange}
                                 isMulti={true}
@@ -65,6 +95,7 @@ const GoalForm = ({ onSubmit, onCancel }) => {
                                 value={value}
                                 name={name}
                                 ref={ref}
+                                placeholder={"Select one or more programs..."}
                             />
                         )}
                     />
@@ -75,7 +106,7 @@ const GoalForm = ({ onSubmit, onCancel }) => {
             }
 
             {/* Conditional rendering for Workout options */}
-            {type === 'Workout' &&
+            {type !== undefined && type.value === 'Workout' &&
                 <>
                     {/* Select field for workout ID */}
                     <Controller
@@ -84,7 +115,7 @@ const GoalForm = ({ onSubmit, onCancel }) => {
                         render={({
                             field: { onChange, onBlur, value, name, ref },
                         }) => (
-                            <Select
+                            <Select className="contribution-form-field"
                                 options={workoutOptions}
                                 onChange={onChange}
                                 isMulti={true}
@@ -92,6 +123,7 @@ const GoalForm = ({ onSubmit, onCancel }) => {
                                 value={value}
                                 name={name}
                                 ref={ref}
+                                placeholder={"Select one or more workouts..."}
                             />
                         )}
                     />
@@ -102,11 +134,27 @@ const GoalForm = ({ onSubmit, onCancel }) => {
             }
 
             {/* Submit button */}
-            <button type="submit">Submit</button>
+            {/* <button type="submit">Submit</button> */}
 
             {/* Cancel button */}
-            <button type="button" onClick={onCancel}>Cancel</button>
-        </form>
+            {/* <button type="button" onClick={onCancel}>Cancel</button> */}
+
+            <div className='contribution-form-buttons'>
+                <Button
+                    className="buttonEdit"
+                    variant="primary"
+                    type="submit"
+                >
+                    Submit
+                </Button>
+                <Button
+                    className="buttonRemove"
+                    variant="danger"
+                    onClick={onCancel}
+                >
+                    Cancel   </Button>
+            </div>
+        </form >
     );
 };
 

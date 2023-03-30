@@ -22,7 +22,7 @@ const ProfileInfo = ({ profile }) => {
     }
 
     let extraPoints = 0
-    if (JSON.parse(localStorage.getItem('contributions')) === 1) {
+    if (JSON.parse(localStorage.getItem('contributions')) > 0) {
 
         extraPoints = 150
     }
