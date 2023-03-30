@@ -48,7 +48,7 @@ const GoalForm = ({ onSubmit, onCancel }) => {
                 className="contribution-form-field-name"
                 type="text"
                 placeholder="Name..."
-                {...register("Name", { required: true, maxLength: 80 })}
+                {...register("name", { required: true, maxLength: 80 })}
             />
 
             {/* Input field for goal end date */}
@@ -64,6 +64,7 @@ const GoalForm = ({ onSubmit, onCancel }) => {
                         options={typeOptions}
                         onChange={onChange}
                         onBlur={onBlur}
+                        getOptionValue={(option) => option.value}
                         value={value}
                         name={name}
                         ref={ref}

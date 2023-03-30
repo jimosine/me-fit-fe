@@ -34,7 +34,7 @@ const GoalsList = ({ goals, removeGoals, setGoals, loading, setLoading, setProfi
     const goalsItems = goals.filter(goal => goal.profile === profileId).map((goal, index) => (
         <GoalItem
             setProfile={setProfile}
-            key={goal.Name + '-' + index}
+            key={goal.name + '-' + index}
             index={index}
             goal={goal}
             removeGoals={removeGoals}
