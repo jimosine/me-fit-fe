@@ -205,6 +205,12 @@ h4 {
   font-size: 1.3em !important;
 }
 
+span {
+  font-family: 'Yaldevi', sans-serif !important;
+  letter-spacing: 1px !important;
+  font-size: 1.1em !important;
+}
+
 .card-text {
   font-family: 'Yaldevi', sans-serif !important;
   letter-spacing: 1px !important;
@@ -229,11 +235,6 @@ code {
   font-family: 'Yaldevi', sans-serif !important;
   font-size: 0.9em !important;
   padding: 0.8em !important;
-}
-
-.buttonEdit {
-  background-color: #5eb1bf !important;
-  border: none !important;
 }
 
 .buttonRemove {
@@ -269,4 +270,20 @@ code {
 
 .achievement-img {
   width: 33% !important;
+}
+
+.usercolor {
+  color: #458789 !important;
+}
+
+.infostyle {
+  border: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  width: 20em;
+}
+
+.profilepicture {
+  border-radius: 50% !important;
+  width: 100px;
+  height: 100px;
 }
