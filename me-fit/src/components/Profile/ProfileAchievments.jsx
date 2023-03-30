@@ -37,7 +37,7 @@ const ProfileAchievements = () => {
           src={achievement3}
           alt="achievement1"
         ></img>
-        {(JSON.parse(localStorage.getItem('contributions')) === 1) ? <img
+        {(JSON.parse(localStorage.getItem('contributions')) > 0) ? <img
           className="achievement-img"
           src={achieves4complete}
           alt="achievement1"

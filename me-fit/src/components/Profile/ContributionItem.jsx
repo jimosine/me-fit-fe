@@ -1,5 +1,6 @@
 import { Button } from "react-bootstrap"
 import { useState, useEffect } from "react";
+import { Accordion } from "react-bootstrap";
 
 const ContributionItem = ({ contributions, contribution, setContributions, index }) => {
 
@@ -103,40 +104,152 @@ const ContributionItem = ({ contributions, contribution, setContributions, index
 
             {isEditing && (
                 <>
-                    <input type="text" value={nameEdit} onChange={(e) => setNameEdit(e.target.value)} />
-                    <input type="text" value={descriptionEdit} onChange={(e) => setDescriptionEdit(e.target.value)} />
-                    <input type="text" value={muscleGroupEdit} onChange={(e) => setMuscleGroupEdit(e.target.value)} />
-                    <input type="text" value={imgEdit} onChange={(e) => setImgEdit(e.target.value)} />
-                    <input type="text" value={vidEdit} onChange={(e) => setVidEdit(e.target.value)} />
-                    {/* <input type="text" value={repetitionsEdit} onChange={(e) => setRepititionsEdit(e.target.value)} /> */}
-                    <div className='contribution-form-buttons'>
-                        <Button variant="primary" onClick={updateContribution}>
-                            Edit goal
-                        </Button>
-                    </div>
+                    <div className='goal-item'>
+
+                        <Accordion.Item eventKey={`${index}`} style={{ border: "none" }}>
+                            <Accordion.Header >Contribution #{index + 1}:  </Accordion.Header>
+                            <Accordion.Body>
+
+                                <div style={{
+                                    width: "50%",
+                                    marginLeft: "25%",
+                                    backgroundColor: "rgba(211, 211, 211, 0.8)",
+                                    padding: "10px",
+                                    borderRadius: "15px",
+                                    boxShadow: "0 2px 4px rgba(0,0,0,0.2)"
+                                }}>
+                                    <img src={contributions[index].imglink} alt="" width="100%" height="200" />
+                                    <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                        <span style={{ fontWeight: "bold" }}>Type:</span>
+                                        <span>{type}</span>
+                                    </p>
+                                    <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                        <span style={{ fontWeight: "bold" }}>Name:</span>
+                                        <span><input className="contribution-form-field-name" type="text" value={nameEdit} onChange={(e) => setNameEdit(e.target.value)} /></span>
+                                    </p>
+                                    <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                        <span style={{ fontWeight: "bold" }}>Description:</span>
+                                        <div style={{ padding: "10px" }}>
+                                            <textarea rows="3"
+                                                className="contribution-form-field-description" type="text" value={descriptionEdit} onChange={(e) => setDescriptionEdit(e.target.value)} />
+                                        </div>
+                                    </p>
+                                    <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                        <span style={{ fontWeight: "bold" }}>Muscle Group:</span>
+                                        <input type="text" value={muscleGroupEdit} onChange={(e) => setMuscleGroupEdit(e.target.value)} />
+                                    </p>
+                                    <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                        <span style={{ fontWeight: "bold" }}>Reptitions:</span>
+                                        <input type="number" value={repetitionsEdit} onChange={(e) => setRepititionsEdit(e.target.value)} />
+                                    </p>
+                                    <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                        <span style={{ fontWeight: "bold" }}>Video:</span>
+                                        <input type="url" value={vidEdit} onChange={(e) => setVidEdit(e.target.value)} />
+                                    </p>
+                                    <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                        <span style={{ fontWeight: "bold" }}>Image:</span>
+                                        <input type="url" value={imgEdit} onChange={(e) => setImgEdit(e.target.value)} />
+                                    </p>
+
+                                    <div className='contribution-form-buttons'>
+                                        <Button variant="primary" onClick={updateContribution}>
+                                            Save
+                                        </Button>
+                                    </div>
+
+                                </div>
+
+
+                            </Accordion.Body>
+                        </Accordion.Item>
+                    </div >
                 </>)}
 
-            {!isEditing &&
-                <>
-                    <li key="type">{type}</li>
-                    <li key="name">{contributions[index].name}</li>
-                    <li key="description">{contributions[index].description}</li>
-                    <li key="musclegroup">{contributions[index].musclegroup}</li>
-                    <li key="reptitions">{contributions[index].repetitions}</li>
-                    <li key="img">{contributions[index].imglink}</li>
-                    <li key="vid">{contributions[index].vidlink}</li>
-                    <div className='contribution-form-buttons'>
-                        <Button className='contribution-form-button' variant="danger" onClick={removeContribution} >
-                            Remove
-                        </Button>
-                        <Button variant="primary" onClick={handleButtonClick}>
-                            Edit goal
-                        </Button>
-                    </div>
-                    <hr />
-                </>
-            }
 
+
+            {!isEditing &&
+                // <>
+                //     <li key="type">{type}</li>
+                //     <li key="name">{contributions[index].name}</li>
+                //     <li key="description">{contributions[index].description}</li>
+                //     <li key="musclegroup">{contributions[index].musclegroup}</li>
+                //     <li key="reptitions">{contributions[index].repetitions}</li>
+                //     <li key="img">{contributions[index].imglink}</li>
+                //     <li key="vid">{contributions[index].vidlink}</li>
+                //     <div className='contribution-form-buttons'>
+                //         <Button className='contribution-form-button' variant="danger" onClick={removeContribution} >
+                //             Remove
+                //         </Button>
+                //         <Button variant="primary" onClick={handleButtonClick}>
+                //             Edit goal
+                //         </Button>
+                //     </div>
+                //     <hr />
+                // </>
+
+
+                <div className='goal-item'>
+
+                    <Accordion.Item eventKey={`${index}`} style={{ border: "none" }}>
+                        <Accordion.Header >Contribution #{index + 1}:  </Accordion.Header>
+                        <Accordion.Body>
+
+                            <div style={{
+                                width: "50%",
+                                marginLeft: "25%",
+                                backgroundColor: "rgba(211, 211, 211, 0.8)",
+                                padding: "10px",
+                                borderRadius: "15px",
+                                boxShadow: "0 2px 4px rgba(0,0,0,0.2)"
+                            }}>
+                                <img src={contributions[index].imglink} alt="" width="100%" height="200" />
+                                <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                    <span style={{ fontWeight: "bold" }}>Type:</span>
+                                    <span>{type}</span>
+                                </p>
+                                <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                    <span style={{ fontWeight: "bold" }}>Name:</span>
+                                    <span>{contributions[index].name}</span>
+                                </p>
+                                <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                    <span style={{ fontWeight: "bold" }}>Description:</span>
+                                    <div style={{ padding: "10px" }}>
+                                        <span>{contributions[index].description}</span>
+                                    </div>
+                                </p>
+                                <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                    <span style={{ fontWeight: "bold" }}>Muscle Group:</span>
+                                    <span>{contributions[index].musclegroup}</span>
+                                </p>
+                                <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                    <span style={{ fontWeight: "bold" }}>Reptitions:</span>
+                                    <span>{contributions[index].repetitions}</span>
+                                </p>
+                                <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                    <span style={{ fontWeight: "bold" }}>Video:</span>
+                                    <span>{contributions[index].vidlink}</span>
+                                </p>
+                                {/* <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                    <span style={{ fontWeight: "bold" }}>Image link:</span>
+                                    <span>{contributions[index].imglink}</span>
+                                </p> */}
+
+                                <div className='contribution-form-buttons'>
+                                    <Button className='contribution-form-button' variant="danger" onClick={removeContribution} >
+                                        Remove
+                                    </Button>
+                                    <Button variant="primary" onClick={handleButtonClick}>
+                                        Edit
+                                    </Button>
+                                </div>
+
+                            </div>
+
+
+                        </Accordion.Body>
+                    </Accordion.Item>
+                </div >
+            }
         </>
     )
 }

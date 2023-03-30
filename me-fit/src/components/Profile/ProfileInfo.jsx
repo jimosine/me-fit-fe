@@ -5,6 +5,7 @@ import { FaUserCircle } from 'react-icons/fa';
 import achieves2complete from '../../images/profile.jpg';
 
 const ProfileInfo = ({ profile }) => {
+
   if (profile.goalsId === undefined) {
     profile.goalsId = [];
   }

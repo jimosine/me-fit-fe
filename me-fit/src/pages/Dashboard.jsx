@@ -37,7 +37,7 @@ const Dashboard = ({ goals, addGoals, setGoals, setProfile }) => {
             data.programsId = data.programsId.map(item => item.value)
 
         }
-
+        data.type = data.type.value
         data.programsId = data.programsId.map(item => item.value)
         //SET DYNAMICALY
         data.profile = parseInt(sessionStorage.getItem("profile"))
