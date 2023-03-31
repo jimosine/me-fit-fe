@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 
 
-const ProfileForm = ({ onSubmit, onCancel, setProfile }) => {
+const ProfileForm = ({ onSubmit, onCancel }) => {
     // Initialize form using useForm hook
     const { register, handleSubmit } = useForm();
 

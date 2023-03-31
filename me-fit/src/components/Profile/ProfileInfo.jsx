@@ -1,6 +1,3 @@
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import { Row } from 'react-bootstrap';
 import { FaUserCircle } from 'react-icons/fa';
 import achieves2complete from '../../images/profile.jpg';
 
@@ -24,11 +21,6 @@ const ProfileInfo = ({ profile }) => {
     if (JSON.parse(localStorage.getItem('contributions')) > 0) {
         extraPoints = 150;
     }
-
-
-    // if (profile.completedGoals === undefined) {
-    //     profile.completedGoals = []
-    // }
 
     return (
         <div className="container mt-4 mb-4 p-3 d-flex justify-content-center">

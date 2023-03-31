@@ -9,10 +9,8 @@ const ContributionItem = ({ contributions, contribution, setContributions, index
     const name = contribution.name
     const type = contribution.Type
 
-    //SOMS IS IE UNDEFINED
     if (type !== undefined) {
         console.log(type.toLowerCase());
-        // const type = contribution.Type.value.toLowerCase()
     }
 
     const [nameEdit, setNameEdit] = useState(contribution.name);
@@ -168,25 +166,6 @@ const ContributionItem = ({ contributions, contribution, setContributions, index
 
 
             {!isEditing &&
-                // <>
-                //     <li key="type">{type}</li>
-                //     <li key="name">{contributions[index].name}</li>
-                //     <li key="description">{contributions[index].description}</li>
-                //     <li key="musclegroup">{contributions[index].musclegroup}</li>
-                //     <li key="reptitions">{contributions[index].repetitions}</li>
-                //     <li key="img">{contributions[index].imglink}</li>
-                //     <li key="vid">{contributions[index].vidlink}</li>
-                //     <div className='contribution-form-buttons'>
-                //         <Button className='contribution-form-button' variant="danger" onClick={removeContribution} >
-                //             Remove
-                //         </Button>
-                //         <Button variant="primary" onClick={handleButtonClick}>
-                //             Edit goal
-                //         </Button>
-                //     </div>
-                //     <hr />
-                // </>
-
 
                 <div className='goal-item'>
 
@@ -230,10 +209,6 @@ const ContributionItem = ({ contributions, contribution, setContributions, index
                                     <div style={{ padding: "5px" }}>
                                         <span>{contributions[index].vidlink}</span></div>
                                 </p>
-                                {/* <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                    <span style={{ fontWeight: "bold" }}>Image link:</span>
-                                    <span>{contributions[index].imglink}</span>
-                                </p> */}
 
                                 <div className='contribution-form-buttons'>
                                     <Button className='contribution-form-button' variant="danger" onClick={removeContribution} >

@@ -42,7 +42,6 @@ function NavBar() {
             </Link>
           </Nav.Link>
         )}
-        {/* <Nav.Link > <Link className="text-decoration-none text-white" to="/profile"> Profile </Link></Nav.Link> */}
       </Nav>
 
       <Nav className="ml-auto">
@@ -106,7 +105,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
-// <NavLink to="/"><li>Home</li></NavLink>
-// <NavLink to="/profile"><li>Profile</li></NavLink>
-// <NavLink to="/library"><li>Library</li></NavLink>
