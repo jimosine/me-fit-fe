@@ -227,7 +227,7 @@ const ContributionItem = ({ contributions, contribution, setContributions, index
                                 </p>
                                 <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                     <span style={{ fontWeight: "bold" }}>Video:</span>
-                                    <div style={{ padding: "10px" }}>
+                                    <div style={{ padding: "5px" }}>
                                         <span>{contributions[index].vidlink}</span></div>
                                 </p>
                                 {/* <p style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>

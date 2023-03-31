@@ -1,5 +1,4 @@
 import React from 'react';
-import { storageRead } from '../../utils/storage';
 
 const DashboardHeader = () => {
 

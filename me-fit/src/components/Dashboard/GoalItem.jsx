@@ -3,11 +3,11 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import { storageDelete, storageRead, storageSave } from '../../utils/storage';
-import { deleteGoal, exercisesFromWorkouts, goalPostUpdate, workoutsFromPrograms } from '../../utils/api';
+import { storageRead } from '../../utils/storage';
+import { deleteGoal, exercisesFromWorkouts, workoutsFromPrograms } from '../../utils/api';
 import { FaCheckSquare, FaTimes } from 'react-icons/fa'
 
-const GoalItem = ({ goal, removeGoals, index, setProfile }) => {
+const GoalItem = ({ goal, removeGoals, index }) => {
 
     const [id, setId] = useState(0);
     const [workouts, setWorkouts] = useState([])
@@ -31,12 +31,6 @@ const GoalItem = ({ goal, removeGoals, index, setProfile }) => {
     }
 
     const handleButtonClick = () => {
-        // setWorkExer(workouts.map(item => exercises.filter(i => item.exercisesId.includes(i.id)).map(x => x.name)))
-        // console.log(workExer);
-        // const profileInfo = JSON.parse(localStorage.getItem("profileinfo"))
-        // profileInfo.completedGoals = [goal.id]
-        // console.log(profileInfo);
-        // setProfile(profileInfo)
         if (localStorage.getItem('completed') === null) {
             localStorage.setItem('completed', JSON.stringify([goal.id]))
             handleRemove()
@@ -61,15 +55,9 @@ const GoalItem = ({ goal, removeGoals, index, setProfile }) => {
         setProgress((checkedCount / exercises.length) * 100);
     }, [checkedCount, exercises.length]);
 
-    // let progress = 0
-
-
 
 
     useEffect(() => {
-
-
-
         const fetchData = async () => {
             const ids = await workoutsFromPrograms(goal.programsId);
             setWorkouts(ids);
@@ -92,15 +80,10 @@ const GoalItem = ({ goal, removeGoals, index, setProfile }) => {
 
 
 
-    // if (workouts.length === 0 || exercises.length === 0) {
-    //     return <div>Loading...</div>;
-    // }
 
     return (
 
 
-
-        //If Type === Program, don't show the empty workout array, and vice versa.
         <div className='goal-item'>
 
             <Accordion.Item eventKey={`${index}`} style={{ border: "none" }}>
@@ -193,8 +176,6 @@ const GoalItem = ({ goal, removeGoals, index, setProfile }) => {
                             {goal.name} /
                             {goal.type} /
                             {goal.enddate} /
-                            {/* {goal.completed.toString()} /
-                            {goal.workouts.map(item => item.label + " | ")} / */}
                         </li>
                     }
 
