@@ -58,7 +58,7 @@ This project is licensed under the MIT License.
 
 ## Acknowledgments
 
-### Achievements
-https://www.freepik.com/free-vector/first-place-badges-winner-ribbons-vector-illustration_10700834.htm#query=achievements%20badge&position=2&from_view=search&track=ais
+### Achievement images:
+https://www.freepik.com
 
 
