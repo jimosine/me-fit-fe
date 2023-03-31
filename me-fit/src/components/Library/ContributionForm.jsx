@@ -6,7 +6,6 @@ import { storageRead } from '../../utils/storage';
 
 const ContributionForm = ({ onSubmit }) => {
     // Initialize form using useForm hook
-    // const { register, handleSubmit, watch } = useForm();
 
     const {
         handleSubmit,
