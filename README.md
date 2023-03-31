@@ -52,7 +52,7 @@ This project is licensed under the MIT License.
 
 ## Note
 
-• Color palette for this applications: https://coolors.co/91a8c9-718db8-fa9d7b
+• Color palette for this applications: https://coolors.co/458789-5eb1bf-de6b48-cfee9e-fcfcfc
 
 • This is a student project and it should not be used as a production-ready software.
 
