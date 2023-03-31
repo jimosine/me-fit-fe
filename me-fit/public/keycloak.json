@@ -2,7 +2,7 @@
   "realm": "me-fit-nl",
   "auth-server-url": "https://lemur-3.cloud-iam.com/auth/",
   "ssl-required": "external",
-  "resource": "befit-front-end",
+  "resource": "befit-front-end-live",
   "public-client": true,
   "verify-token-audience": true,
   "use-resource-role-mappings": true,
