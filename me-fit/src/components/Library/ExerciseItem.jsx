@@ -17,9 +17,6 @@ const ExerciseItem = ({ cardTitle, selectedButton, exercise }) => {
         />
         <Card.Body>
           <Card.Title>{cardTitle}</Card.Title>
-          {/* <Card.Text>
-                        Very good training by a very good trainer
-                    </Card.Text> */}
           <Button
             className="buttonEdit"
             onClick={() => setLgShow(true)}

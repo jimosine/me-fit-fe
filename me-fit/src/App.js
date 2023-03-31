@@ -8,10 +8,10 @@ import Login from "./pages/Login"
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { storageSave } from './utils/storage';
 import KeycloakRoute from "./routes/KeycloakRoute";
-import { storeProfileSession } from './utils/api';
+
 
 function App() {
 

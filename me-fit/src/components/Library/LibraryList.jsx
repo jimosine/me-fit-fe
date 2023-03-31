@@ -3,7 +3,7 @@ import ExerciseItem from "./ExerciseItem";
 import WorkoutItem from "./WorkoutItem";
 
 
-import { storageSave, storageRead } from '../../utils/storage'
+import { storageSave } from '../../utils/storage'
 
 import { useState, useEffect } from "react";
 

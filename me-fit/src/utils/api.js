@@ -10,7 +10,7 @@ export const goalPostUpdate = async (goal, setId, id) => {
         });
         const data = await response.json();
         setId(data.id);
-        // console.log(goal.programsId);
+
 
         if (goal.type === 'Program') {
             const ids = goal.programsId
@@ -52,7 +52,6 @@ export const deleteGoal = async (goal, setId) => {
         });
         const data = await response.json();
         setId(data.id);
-        // console.log(goal.programsId);
 
         const ids = goal.programsId.map(item => item.value);
         await fetch(`https://me-fit-nl.azurewebsites.net/goal/${data.id}`, {
@@ -70,12 +69,10 @@ export const deleteGoal = async (goal, setId) => {
 
 export const workoutsFromPrograms = async (programIds) => {
 
-    //FIX DIT
     if (programIds.length < 1) {
         return false
     }
 
-    //const ids = programIds.map(item => item.value);
     const ids = programIds
 
     const workoutIds = [];
@@ -102,7 +99,6 @@ export const workoutsFromPrograms = async (programIds) => {
 
 export const exercisesFromWorkouts = async (workoutIds) => {
 
-    //FIX DIT
     if (workoutIds.length < 1) {
         return false
     }
@@ -144,29 +140,3 @@ export const storeProfileSession = async () => {
         .catch((error) => console.error(error));
 
 }
-
-
-
-    // try {
-    //     const response = await fetch(`https://me-fit-nl.azurewebsites.net/goal/name/${goal.name}`, {
-    //         method: "GET",
-    //         headers: {
-    //             "Content-type": "application/json; charset=UTF-8",
-    //         },
-    //     });
-    //     const data = await response.json();
-    //     setId(data.id);
-    //     // console.log(goal.programsId);
-
-    //     const ids = goal.programsId.map(item => item.value);
-    //     await fetch(`https://me-fit-nl.azurewebsites.net/goal/${data.id}`, {
-    //         method: "DELETE",
-    //         headers: {
-    //             "Content-type": "application/json; charset=UTF-8",
-    //         },
-    //         body: JSON.stringify(ids),
-    //     });
-    // }
-    // catch (error) {
-    //     console.error(error);
-    // }

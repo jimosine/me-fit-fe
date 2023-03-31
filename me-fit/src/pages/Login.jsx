@@ -43,7 +43,6 @@ function Login() {
       `https://me-fit-nl.azurewebsites.net/profile/userid/${profileId}`
     );
     if (!res.ok) {
-      // navigate("/profile")
       createprofile(userInfo.sub, userInfo.given_name, userInfo.family_name);
     }
   }
@@ -63,10 +62,10 @@ function Login() {
           <div className="card cardstyle">
             <div className="card-body">
               <h5 className={'card-title'}>
-                Best workout plan for men and women
+                The Best workout plans for men and women!
               </h5>
               {!keycloak.authenticated && (
-                <p>Don't have a account. Let make one!</p>
+                <p>Don't have a account? Let's make one!</p>
               )}
               {!keycloak.authenticated && (
                 <div className="buttonwrapper">

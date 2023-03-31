@@ -9,7 +9,7 @@ const WorkoutItem = ({ cardTitle, selectedButton, workout, exercises }) => {
   const workoutsIds = workout.exercisesId;
   const workoutsNames = exercises.filter((item) =>
     workoutsIds.includes(item.id)
-  ); //.map(item => item.name)
+  );
 
   return (
     <>
@@ -23,7 +23,6 @@ const WorkoutItem = ({ cardTitle, selectedButton, workout, exercises }) => {
           <Card.Title>{cardTitle}</Card.Title>
           <Card.Text style={{ height: '120px' }}>
             {workout.description_short}
-            {/* {program.description} */}
           </Card.Text>
           <Button
             className="buttonEdit"

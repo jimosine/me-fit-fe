@@ -1,6 +1,6 @@
 import GoalItem from './GoalItem';
 import Accordion from 'react-bootstrap/Accordion';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { storageRead, storageSave } from '../../utils/storage';
 import { storeProfileSession } from '../../utils/api';
 
@@ -11,8 +11,6 @@ const GoalsList = ({ goals, removeGoals, setGoals, loading, setLoading, setProfi
             setLoading(true);
             const fetchData = async () => {
                 Promise.all([
-                    // fetch('https://jb-lost-in-translation-api-production.up.railway.app/trainers'
-                    // await fetch('https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/goal'),
                     await fetch('https://me-fit-nl.azurewebsites.net/goal'),
                 ])
                     .then(([response]) => Promise.all([response.json()]))
@@ -44,9 +42,6 @@ const GoalsList = ({ goals, removeGoals, setGoals, loading, setLoading, setProfi
     return (
         // Only render the goal list if there is a least one goal present
         <div className="GoalList">
-            {/* MISSCHIEN WEL ZO DOEN */}
-            {/* {loading && <p> Loading goals.. </p>}
-            {goals.length === 0 && <p>Currently no goals.</p>} */}
             {loading ? (
                 <p> Loading goals.. </p>
             ) : (

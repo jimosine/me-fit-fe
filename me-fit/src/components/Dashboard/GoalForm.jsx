@@ -43,7 +43,6 @@ const GoalForm = ({ onSubmit, onCancel }) => {
 
         <form onSubmit={handleSubmit(onSubmit)}>
             {/* Input field for goal name */}
-            {/* <input type="text" placeholder="Name" {...register("name", { required: true, maxLength: 80 })} /> */}
             <input
                 className="contribution-form-field-name"
                 type="text"
@@ -72,12 +71,6 @@ const GoalForm = ({ onSubmit, onCancel }) => {
                     />
                 )}
             />
-            {/* Select field for goal type */}
-            {/* <select {...register("type", { required: true })}>
-                <option value="">Select a goal</option>
-                <option value="Program">Program</option>
-                <option value="Workout">Workout</option>
-            </select> */}
 
             {/* Conditional rendering for Program options */}
             {type !== undefined && type.value === 'Program' &&
@@ -135,10 +128,7 @@ const GoalForm = ({ onSubmit, onCancel }) => {
             }
 
             {/* Submit button */}
-            {/* <button type="submit">Submit</button> */}
-
             {/* Cancel button */}
-            {/* <button type="button" onClick={onCancel}>Cancel</button> */}
 
             <div className='contribution-form-buttons'>
                 <Button
