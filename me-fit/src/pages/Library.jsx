@@ -10,14 +10,9 @@ import { FaPlusCircle } from 'react-icons/fa';
 
 
 import { useState } from "react";
-import { storageDelete, storageSave } from "../utils/storage";
 
 
 const Library = ({ setContributions, contributions, updateContributions }) => {
-
-
-    const navigate = useNavigate()
-
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -33,9 +28,6 @@ const Library = ({ setContributions, contributions, updateContributions }) => {
 
     const handleFormSubmit = (data) => {
 
-        console.log("DATA TO BE POSTED: ");
-
-        //handle de .value shit:
         //PROGRAMS:
         if (data.Type.value === "Program") {
             data.Type = data.Type.value
@@ -56,11 +48,9 @@ const Library = ({ setContributions, contributions, updateContributions }) => {
         //IF EXERCISE
         if (data.Type === "Exercise") {
 
-            console.log("DOING PUT NOW");
 
             //EERST EEN POST MET ALLES BEHALVE WORKOUTS/EXERCISES
             fetch("https://me-fit-nl.azurewebsites.net/exercise", {
-                // fetch("https://cors-anywhere.herokuapp.com/https://me-fit-nl.azurewebsites.net/exercise", {
                 method: "POST",
                 body: JSON.stringify({
                     "name": data.name,
@@ -79,14 +69,12 @@ const Library = ({ setContributions, contributions, updateContributions }) => {
         }
 
 
-        // storageSave('contributions', contributions)
 
 
 
         //SLUIT DE FORM MODAL
         handleClose()
 
-        console.log(contributions.concat([data]));
         updateContributions([data])
         setContributions(contributions.concat([data]));
         contributions = contributions.concat([data])
@@ -97,9 +85,7 @@ const Library = ({ setContributions, contributions, updateContributions }) => {
     return (
         <div>
             <Row >
-                {/* <Col>Search stuff</Col> */}
                 <Col ><LibraryHeader selectedButton={selectedButton} handleButtonClick={handleButtonClick} /></Col>
-                {/* <Col></Col> */}
             </Row>
             <Row>
                 <Col></Col>
@@ -126,16 +112,6 @@ const Library = ({ setContributions, contributions, updateContributions }) => {
 
                         </Modal.Body>
 
-
-
-                        {/* <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
-                                Close
-                            </Button>
-                            <Button variant="primary" onSubmit={handleFormSubmit}>
-                                Save Changes
-                            </Button>
-                        </Modal.Footer> */}
                     </Modal></Col>
             </Row>
 

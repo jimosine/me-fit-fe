@@ -17,7 +17,6 @@ const Dashboard = ({ goals, addGoals, setGoals, setProfile }) => {
     localStorage.setItem('contributions', JSON.stringify(0))
 
 
-    // const [goals, setGoals] = useState([]);
     const handleShow = () => setShow(true);
     const [show, setShow] = useState(false);
     const [id, setId] = useState(0);
@@ -39,23 +38,11 @@ const Dashboard = ({ goals, addGoals, setGoals, setProfile }) => {
         }
         data.type = data.type.value
         data.programsId = data.programsId.map(item => item.value)
-        //SET DYNAMICALY
         data.profile = parseInt(sessionStorage.getItem("profile"))
-        // data.profile = sessionStorage.getItem("profile")
-
-        console.log(data);
-        // console.log(data.programsId.map(item => item.value))
-
-        // Save the form data and update the form submission status
-        // Update the goals list state
-        //Update storage
-        //setFormData(data);
 
         handleClose()
-
         postGoal(data)
         addGoals([data])
-        // setGoals(data)
     }
 
 
@@ -103,7 +90,6 @@ const Dashboard = ({ goals, addGoals, setGoals, setProfile }) => {
             <GoalsList setProfile={setProfile} goals={goals} loading={loading} setLoading={setLoading} removeGoals={removeGoals} setGoals={setGoals} addGoals={addGoals} />
             <AddGoalButton goal={goals} handleShow={handleShow} updateGoals={addGoals} />
 
-            {/* <AddGoalModal show={show} onHide={handleClose} /> */}
             <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header closeButton>
                     <Modal.Title className="ms-auto">Add a new goal</Modal.Title>

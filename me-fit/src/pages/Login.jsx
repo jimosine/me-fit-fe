@@ -43,7 +43,6 @@ function Login() {
       `https://me-fit-nl.azurewebsites.net/profile/userid/${profileId}`
     );
     if (!res.ok) {
-      // navigate("/profile")
       createprofile(userInfo.sub, userInfo.given_name, userInfo.family_name);
     }
   }

@@ -19,12 +19,8 @@ const Profile = ({ contributions, profile, setProfile, setContributions }) => {
 
 
     const handleFormSubmit = (data) => {
-        console.log(data);
         setProfile(data)
         storageSave('profile', data)
-        // // Add UserID & isCompleted to the form data
-        // data.UserID = 1
-        // data.completed = false
 
         handleClose()
 
@@ -115,8 +111,6 @@ const Profile = ({ contributions, profile, setProfile, setContributions }) => {
                 </Tabs>
             }
             <div>
-                {/* {console.log(contributions)} */}
-
 
             </div>
 
